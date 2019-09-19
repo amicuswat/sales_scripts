@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponseRedirect
-from .forms import ScriptsUserLoginForm
+from .forms import ScriptsUserLoginForm, ScriptsUserRegisterForm
 from django.contrib import auth
 from django.urls import reverse
 
@@ -28,4 +28,27 @@ def login(request):
     return render(request, 'authapp/login.html', content)
 
 def register(request):
-    pass
+    title = 'регистрация'
+
+    if request.method == 'POST':
+        register_form = ScriptsUserRegisterForm(request.POST)
+
+        if register_form.is_valid:
+            register_form.save()
+
+            return HttpResponseRedirect(reverse('auth:login'))
+
+    else:
+        register_form = ScriptsUserRegisterForm()
+
+    content = {
+        'title': title,
+        'register_form': register_form
+    }
+
+    return render(request, 'authapp/register.html', content)
+
+
+
+
+

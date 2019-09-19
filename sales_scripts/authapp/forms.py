@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from .models import ScriptsUser
 
 
@@ -10,5 +10,18 @@ class ScriptsUserLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super(ScriptsUserLoginForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
-            field.widget.attrs['class']='form-control'
+            field.widget.attrs['class'] = 'form-control'
+            field.help_text = ''
+
+
+class ScriptsUserRegisterForm(UserCreationForm):
+    class Meta:
+        model = ScriptsUser
+        fields = ('username', 'first_name', 'password1', 'password2',
+                  'email', )
+
+    def __init__(self, *args, **kwargs):
+        super(ScriptsUserRegisterForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
             field.help_text = ''
