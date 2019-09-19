@@ -8,6 +8,11 @@
                 {{ user.first_name|default:'Пользователь' }}
             </a>
 
+            <a href="{% url 'auth:logout' %}">выйти</a>
+        {% else %}
+            <a href="{% url 'auth:login' %}">войти</a>
+
+
     {% endif %}</h2>
 {% endblock %}
 

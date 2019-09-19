@@ -69,5 +69,9 @@ def edit(request):
 
     return render(request, 'authapp/edit.html', content)
 
+def logout(request):
+    auth.logout(request)
+    return HttpResponseRedirect(reverse('main'))
+
 
 
