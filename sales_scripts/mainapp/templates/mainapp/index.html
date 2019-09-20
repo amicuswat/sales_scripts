@@ -2,20 +2,29 @@
 {% load static %}
 
 {% block menu %}
-    <h2>Добро пожаловать {% if user.is_authenticated %}
+    <h2>Добро пожаловать
+        {% if user.is_authenticated %}
 
             <a href="{% url 'auth:edit' %}">
                 {{ user.first_name|default:'Пользователь' }}
             </a>
+<button><a href="{% url 'auth:logout' %}">выйти</a></button>
 
-            <a href="{% url 'auth:logout' %}">выйти</a>
         {% else %}
-            <a href="{% url 'auth:login' %}">войти</a>
+           <button> <a href="{% url 'auth:login' %}"> вход </a></button>
+            <button> <a href="{% url 'auth:register' %}"> регистрация </a></button>
 
 
-    {% endif %}</h2>
+
+        {% endif %}
+    </h2>
 {% endblock %}
 
 {% block content %}
     <h2>Здесь будет основное тело сайта</h2>
+    {% if user.is_authenticated %}
+    <button>
+    <a href="{% url 'admin:scripts_read' %}">скрипты</a>
+    </button>
+    {% endif %}
 {% endblock %}

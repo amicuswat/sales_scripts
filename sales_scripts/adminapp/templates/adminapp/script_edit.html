@@ -1,0 +1,45 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <form class="form-horizontal" action="{% url 'admin:script_create' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <b>Название скрипта</b>
+        <input type="text" name="script_name" value="{{ script_to_edit.name }}">
+        <br>
+        <b>Уникальный адрес</b>
+        <br>
+        <b>{{ script_to_edit.url }}</b>
+        <input type="hidden" name="url" value="{{ script_to_edit.url }}">
+     <input class="form-control" type="submit" value="сохранить">
+
+    </form>
+    {% if not control_tops %}
+        <div>
+        <button><a href="{% url 'admin:control_top_create' script_to_edit.pk %}">добавить блок</a></button>
+        </div>
+    {% else %}
+        {% for control_top in control_tops %}
+            <div style="display: flex">
+            <div class="controls-top" style="display: flex">
+                 <h4>{{ control_top.name }}</h4><button><a href="{% url 'admin:control_top_edit' control_top.pk %}">Изменить </a> </button>
+            </div>
+           <div class="sub-controls" >
+               {% for control_to in controls_to_controls %}
+
+                   {% if control_to.control.name == control_top.name %}
+                       {{ control_to.name }} <br>
+                   {% endif %}
+                   {% endfor %}
+               <button>
+                   <a href="{% url 'admin:control_to_control_create' control_top.pk %}">добавить подблок</a>
+               </button>
+           </div>
+            </div>
+            <div>
+        <button><a href="{% url 'admin:control_top_create' script_to_edit.pk %}">добавить блок</a></button>
+        </div>
+         {% endfor %}
+
+    {% endif %}
+{% endblock %}

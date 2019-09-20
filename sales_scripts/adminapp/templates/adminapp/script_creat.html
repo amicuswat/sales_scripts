@@ -1,0 +1,16 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <form class="form-horizontal" action="{% url 'admin:script_create' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <b>Название скрипта</b>
+        <input type="text" name="script_name" value="">
+        <br>
+        <b>Уникальный адрес</b>
+        <br>
+        <b>{{ unique_url }}</b>
+        <input type="hidden" name="url" value="{{ unique_url }}">
+        <input class="form-control" type="submit" value="сохранить">
+    </form>
+{% endblock %}
