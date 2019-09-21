@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'mainapp/base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block menu %}
+    <h2>
+    Скрипт не активирован, для просмотра войдите в свой аккаунт или сообщите заказчику о том что ему нужно активировать скрипт.
+    </h2>
+           <button> <a href="{% url 'auth:login' %}"> вход </a></button>
+
+{% endblock %}
+
+{% block content %}
+
+{% endblock %}

@@ -13,16 +13,26 @@
 				<div class="category_name">
 					{{ script.name|title }}
 				</div>
-                   <div class="category_name">
+            <div class="category_name">
+                <h2>Тестовый вывод удалить после провекри</h2>
+					{{ request.get_host }}{% url 'main:script_view' script.url %}
+				</div>
+                {% if script.is_active %}
+                <div class="category_name">
+                <h5> Скрипт активирован и доступен по ссылке:</h5>
 					{{ script.url }}
 				</div>
+                {% else %}
+                    <button><a href="">Активировать</a>
+                    </button>
+                {% endif %}
 				<div class="category_actions">
 
 					<button>
 						<a href="{% url 'admin:script_edit' script.pk %}">редактировать</a>
 					</button>
                     <button>
-						<a href="{% url 'main:script_view' script.url %}">смотреть</a>
+						<a href="{% url 'main:script_preview' script.pk %}">предварительный просмотр</a>
 					</button>
 					<button>
 						<a href="">удалить</a>
