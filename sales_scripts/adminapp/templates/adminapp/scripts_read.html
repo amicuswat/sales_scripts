@@ -21,6 +21,9 @@
 					<button>
 						<a href="{% url 'admin:script_edit' script.pk %}">редактировать</a>
 					</button>
+                    <button>
+						<a href="{% url 'main:script_view' script.url %}">смотреть</a>
+					</button>
 					<button>
 						<a href="">удалить</a>
 					</button>

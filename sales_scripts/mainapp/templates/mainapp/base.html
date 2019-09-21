@@ -6,27 +6,29 @@
     <meta charset="utf-8">
     <title>
         {% block title %}
-            {{ title|capfirst }}
+            {{ title|title }}
         {% endblock %}
     </title>
     {% block css %}
-
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     {% endblock %}
     {% block js %}
-
     {% endblock %}
 </head>
 <body>
-    <div class="container">
-        {% block menu %}
-        {% endblock %}
-    <div class="content">
-        {% block content %}
-        {% endblock %}
+<div class="admin_container">
+    <div class="h2 text-center head">
+        Главная
     </div>
-    </div>
-{% block footer %}
-{% endblock %}
+    {% block menu %}
 
+    {% endblock %}
+
+
+    {% block content %}
+
+    {% endblock %}
+
+</div>
 </body>
 </html>

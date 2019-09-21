@@ -14,6 +14,9 @@
         <input class="form-control" type="submit" value="сохранить">
 
     </form>
+    <button>
+    <a href="{% url 'admin:scripts_read' %}">Назад</a>
+    </button>
     {% if not control_tops %}
         <div>
             <button><a href="{% url 'admin:control_top_create' script_to_edit.pk %}">добавить блок</a></button>

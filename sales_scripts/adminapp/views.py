@@ -28,7 +28,6 @@ def scripts_read(request):
 
     return render(request, 'adminapp/scripts_read.html', content)
 
-
 def script_create(request):
     title = 'новый скрипт'
 

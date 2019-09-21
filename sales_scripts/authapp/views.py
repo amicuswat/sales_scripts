@@ -18,7 +18,7 @@ def login(request):
         if user and user.is_active:
             auth.login(request, user)
 
-            return HttpResponseRedirect(reverse('main'))
+            return HttpResponseRedirect(reverse('main:main_page'))
 
     content = {
         'title': title,
@@ -71,7 +71,7 @@ def edit(request):
 
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect(reverse('main'))
+    return HttpResponseRedirect(reverse('main:main_page'))
 
 
 
