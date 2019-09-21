@@ -11,35 +11,68 @@
         <br>
         <b>{{ script_to_edit.url }}</b>
         <input type="hidden" name="url" value="{{ script_to_edit.url }}">
-     <input class="form-control" type="submit" value="сохранить">
+        <input class="form-control" type="submit" value="сохранить">
 
     </form>
     {% if not control_tops %}
         <div>
-        <button><a href="{% url 'admin:control_top_create' script_to_edit.pk %}">добавить блок</a></button>
+            <button><a href="{% url 'admin:control_top_create' script_to_edit.pk %}">добавить блок</a></button>
         </div>
     {% else %}
         {% for control_top in control_tops %}
             <div style="display: flex">
-            <div class="controls-top" style="display: flex">
-                 <h4>{{ control_top.name }}</h4><button><a href="{% url 'admin:control_top_edit' control_top.pk %}">Изменить </a> </button>
-            </div>
-           <div class="sub-controls" >
-               {% for control_to in controls_to_controls %}
+                <div class="controls" style="display: flex">
+                    <span class="control-name">{{ control_top.name }}</span>
+                    <button class="change-button"><a href="{% url 'admin:control_top_edit' control_top.pk %}">Изменить
+                        Заголовок </a></button>
+                </div>
 
-                   {% if control_to.control.name == control_top.name %}
-                       {{ control_to.name }} <br>
-                   {% endif %}
-                   {% endfor %}
-               <button>
-                   <a href="{% url 'admin:control_to_control_create' control_top.pk %}">добавить подблок</a>
-               </button>
-           </div>
+                <div class="controls to_control">
+                    {% for control_to in controls_to_controls %}
+
+
+                        {% if control_to.control.name == control_top.name %}
+                            <div class="display-row">
+                                <div class="control-width-350">
+                                    <b>{{ control_to.name }} </b>
+                                    <button><a href="{% url 'admin:control_to_control_edit' control_to.pk %}">Изменить
+                                        подзаголовок </a></button>
+                                </div>
+
+                                <div class="controls control-width-660">
+                                    {% for situation in situations %}
+                                        {% if situation.control.name == control_to.name %}
+                                            <div>
+                                                <b>{{ situation.situation }}</b><br>
+                                                <i>{{ situation.recomended_action }}</i>
+                                             <button>
+                                        <a href="{% url 'admin:situation_edit' situation.pk %}">Изменить</a>
+                                    </button>
+                                            </div>
+
+                                        {% endif %}
+                                    {% endfor %}
+                                    <button>
+                                        <a href="{% url 'admin:situation_create' control_to.pk %}">добавить ситуацию</a>
+                                    </button>
+                                </div>
+
+                            </div>
+                        {% endif %}
+
+                        <div>
+
+                        </div>
+                    {% endfor %}
+                    <button>
+                        <a href="{% url 'admin:control_to_control_create' control_top.pk %}">добавить подблок</a>
+                    </button>
+                </div>
             </div>
-            <div>
-        <button><a href="{% url 'admin:control_top_create' script_to_edit.pk %}">добавить блок</a></button>
+
+        {% endfor %}
+        <div>
+            <button><a href="{% url 'admin:control_top_create' script_to_edit.pk %}">добавить блок</a></button>
         </div>
-         {% endfor %}
-
     {% endif %}
 {% endblock %}

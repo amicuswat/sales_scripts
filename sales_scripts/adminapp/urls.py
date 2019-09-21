@@ -12,5 +12,9 @@ urlpatterns = [
     path('control_top/edit/<int:pk>', adminapp.control_top_edit, name='control_top_edit'),
 
     path('control_to_control/create/<int:pk>', adminapp.control_to_control_create, name='control_to_control_create'),
+    path('control_to_control/edit/<int:pk>', adminapp.control_to_control_edit, name='control_to_control_edit'),
+
+    path('situation/create/<int:pk>', adminapp.situation_create, name='situation_create'),
+    path('situation/edit/<int:pk>', adminapp.situation_edit, name='situation_edit'),
 
 ]

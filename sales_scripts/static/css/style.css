@@ -1,0 +1,61 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+button {
+    max-height: 40px;
+
+    border-radius: 2px;
+    padding: 0 5px;
+    margin: 0 5px;
+}
+
+.change-button {
+    max-width: 80px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.admin_container {
+    width: 1300px;
+    margin: 8px auto;
+    padding: 5px;
+    outline: black solid 1px;
+}
+
+.form-horizontal {
+    margin: 10px;
+}
+
+.controls {
+    width: 250px;
+    padding: 5px;
+    margin: 5px;
+    border: solid lightseagreen 1px;
+}
+
+.to_control {
+    width: 100%;
+
+}
+
+.control-width-350 {
+    width: 350px;
+    border: solid #5897fb 1px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.control-width-660 {
+    width: 660px;
+    border: solid blue 1px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.display-row {
+    display: flex;
+}

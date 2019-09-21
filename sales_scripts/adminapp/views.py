@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from authapp.models import ScriptsUser
-from adminapp.models import Script, ControlTop, ControlToControl
+from adminapp.models import Script, ControlTop, ControlToControl, Situation
 from django.urls import reverse
 import random, string
 
@@ -52,6 +52,7 @@ def script_edit(request, pk):
     script_to_edit = get_object_or_404(Script, pk=pk)
     control_tops = ControlTop.objects.filter(script=script_to_edit)
     controls_to_controls = ControlToControl.objects.filter(control__script=script_to_edit)
+    situations = Situation.objects.filter(control__control__script=script_to_edit)
 
     # for control_top in control_tops:
     #     controls_to_controls[control_top]
@@ -62,7 +63,8 @@ def script_edit(request, pk):
         'title': title,
         'script_to_edit': script_to_edit,
         'control_tops': control_tops,
-        'controls_to_controls': controls_to_controls
+        'controls_to_controls': controls_to_controls,
+        'situations': situations
     }
 
     return render(request, 'adminapp/script_edit.html', content)
@@ -115,3 +117,54 @@ def control_to_control_create(request, pk):
     }
 
     return render(request, 'adminapp/control_to_control_create.html', content)
+
+def control_to_control_edit(request, pk):
+    title = 'изменить подблок'
+
+    control = get_object_or_404(ControlToControl, pk=pk)
+    if request.method == 'POST':
+        control.name = request.POST['control_name']
+        control.save()
+        return HttpResponseRedirect(reverse('admin:script_edit', args=[control.control.script.pk]))
+
+    content = {
+        'title': title,
+        'control': control
+    }
+
+    return render(request, 'adminapp/control_to_control_edit.html', content)
+
+def situation_create(request, pk):
+    title = 'добавляем ситуацию'
+
+    control_to_control = get_object_or_404(ControlToControl, pk=pk)
+    if request.method == 'POST':
+        new_situation = Situation(situation=request.POST['situation'],
+                                  recomended_action=request.POST['recomended_action'],
+                                  control=control_to_control)
+        new_situation.save()
+        return HttpResponseRedirect(reverse('admin:script_edit', args=[control_to_control.control.script.pk]))
+
+    content = {
+        'title': title,
+        'control_to_control': control_to_control
+    }
+
+    return render(request, 'adminapp/situation_create.html', content)
+
+def situation_edit(request, pk):
+    title = 'изменить ситуацию'
+
+    situation = get_object_or_404(Situation, pk=pk)
+    if request.method == 'POST':
+        situation.situation = request.POST['situation']
+        situation.recomended_action = request.POST['recomended_action']
+        situation.save()
+        return HttpResponseRedirect(reverse('admin:script_edit', args=[situation.control.control.script.pk]))
+
+    content = {
+        'title': title,
+        'situation': situation
+    }
+
+    return render(request, 'adminapp/situation_edit.html', content)

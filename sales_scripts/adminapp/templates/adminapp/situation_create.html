@@ -1,0 +1,17 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <form class="form-horizontal" action="{% url 'admin:situation_create' control_to_control.pk %}" method="post"
+          enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <b>Вариант ситуации</b>
+        <input type="text" name="situation" value="">
+        <br>
+        <b>Вариант ситуации</b>
+        <textarea rows="10" cols="45" name="recomended_action" value=""></textarea>
+        <br>
+        <input class="form-control" type="submit" value="сохранить">
+    </form>
+{% endblock %}
