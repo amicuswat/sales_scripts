@@ -21,3 +21,5 @@ class Situation(models.Model):
     situation = models.CharField(verbose_name='ситуация', max_length=250)
     recomended_action = models.TextField(verbose_name='что говорим', blank=True)
     control = models.ForeignKey(ControlToControl, on_delete=models.CASCADE)
+    # control_top = models.ForeignKey(ControlTop, on_delete=models.CASCADE)
+    # script = models.ForeignKey(Script, on_delete=models.CASCADE)

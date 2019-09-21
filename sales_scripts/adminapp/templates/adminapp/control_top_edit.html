@@ -1,0 +1,13 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <form class="form-horizontal" action="{% url 'admin:control_top_edit' object.pk %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <b>Название блока</b>
+        <input type="text" name="control_name" value="{{ object.name }}">
+        <br>
+
+        <input class="form-control" type="submit" value="сохранить">
+    </form>
+{% endblock %}
