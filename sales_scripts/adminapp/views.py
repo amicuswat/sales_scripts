@@ -3,6 +3,7 @@ from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from authapp.models import ScriptsUser
 from adminapp.models import Script, ControlTop, ControlToControl, Situation
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 import random, string
 
 # Create your views here.
@@ -16,15 +17,19 @@ def randomword(length):
    letters = string.ascii_lowercase
    return ''.join(random.choice(letters) for i in range(length))
 
+@login_required(login_url='/auth/login/')
 def control_post(request):
     title = 'пункт управления'
+    scripts = Script.objects.filter(user__username=request.user.username).order_by('last_modified')
 
     content = {
-        'title': title
+        'title': title,
+        'scripts': scripts
     }
 
     return render(request, 'adminapp/control_post.html', content)
 
+@login_required(login_url='/auth/login/')
 def scripts_read(request):
     title = 'админка/скрипты'
 
@@ -37,6 +42,7 @@ def scripts_read(request):
 
     return render(request, 'adminapp/scripts_read.html', content)
 
+@login_required(login_url='/auth/login/')
 def script_create(request):
     title = 'новый скрипт'
 
@@ -54,6 +60,7 @@ def script_create(request):
 
     return render(request, 'adminapp/script_creat.html', content)
 
+@login_required(login_url='/auth/login/')
 def script_edit(request, pk):
     title = 'внести изменения'
 
@@ -77,6 +84,7 @@ def script_edit(request, pk):
 
     return render(request, 'adminapp/script_edit.html', content)
 
+@login_required(login_url='/auth/login/')
 def control_top_create(request, pk):
     title = 'добавить блок'
 
@@ -93,6 +101,7 @@ def control_top_create(request, pk):
 
     return render(request, 'adminapp/control_top_create.html', content)
 
+@login_required(login_url='/auth/login/')
 def control_top_edit(request, pk):
     title = 'добавить блок'
 
@@ -110,6 +119,7 @@ def control_top_edit(request, pk):
 
     return render(request, 'adminapp/control_top_edit.html', content)
 
+@login_required(login_url='/auth/login/')
 def control_to_control_create(request, pk):
     title = 'создать подблок'
 
@@ -126,6 +136,7 @@ def control_to_control_create(request, pk):
 
     return render(request, 'adminapp/control_to_control_create.html', content)
 
+@login_required(login_url='/auth/login/')
 def control_to_control_edit(request, pk):
     title = 'изменить подблок'
 
@@ -142,6 +153,7 @@ def control_to_control_edit(request, pk):
 
     return render(request, 'adminapp/control_to_control_edit.html', content)
 
+@login_required(login_url='/auth/login/')
 def situation_create(request, pk):
     title = 'добавляем ситуацию'
 
@@ -160,6 +172,7 @@ def situation_create(request, pk):
 
     return render(request, 'adminapp/situation_create.html', content)
 
+@login_required(login_url='/auth/login/')
 def situation_edit(request, pk):
     title = 'изменить ситуацию'
 

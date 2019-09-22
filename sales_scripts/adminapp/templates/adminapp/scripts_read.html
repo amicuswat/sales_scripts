@@ -7,6 +7,9 @@
 		<button class="new_category">
 			<a href="{% url 'admin:script_create' %}">новый скрипт</a>
 		</button>
+    <button class="new_category">
+			<a href="{% url 'admin:control_post' %}">новый скрипт</a>
+		</button>
 
 		{% for script in scripts_list %}
 			<div class="category_record {% if not object.is_active %}not_active{% endif %}">
