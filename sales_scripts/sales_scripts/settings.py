@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'mainapp',
     'adminapp',
     'authapp',
-    'transactions',
+    'marketapp',
 ]
 
 MIDDLEWARE = [

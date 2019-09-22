@@ -8,7 +8,7 @@
 			<a href="{% url 'admin:script_create' %}">новый скрипт</a>
 		</button>
     <button class="new_category">
-			<a href="{% url 'admin:control_post' %}">новый скрипт</a>
+			<a href="{% url 'admin:control_post' %}">Вернуться в рубку</a>
 		</button>
 
 		{% for script in scripts_list %}
@@ -17,13 +17,13 @@
 					{{ script.name|title }}
 				</div>
             <div class="category_name">
-                <h2>Тестовый вывод удалить после провекри</h2>
-					{{ request.get_host }}{% url 'main:script_view' script.url %}
-				</div>
+
                 {% if script.is_active %}
                 <div class="category_name">
                 <h5> Скрипт активирован и доступен по ссылке:</h5>
-					{{ script.url }}
+					{{ request.get_host }}{% url 'main:script_view' script.url %}
+                <button><a href="">Деактивировать</a>
+                    </button>
 				</div>
                 {% else %}
                     <button><a href="">Активировать</a>

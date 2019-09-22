@@ -51,7 +51,7 @@ def script_create(request):
         new_script.save()
         return HttpResponseRedirect(reverse('admin:scripts_read'))
 
-    unique_url = randomword(10)
+    unique_url = randomword(16)
 
     content = {
         'title': title,
