@@ -26,9 +26,9 @@ class Situation(models.Model):
     # control_top = models.ForeignKey(ControlTop, on_delete=models.CASCADE)
     # script = models.ForeignKey(Script, on_delete=models.CASCADE)
 
-class ActivationSlot(models.Model):
-    user = models.ForeignKey(ScriptsUser, on_delete=models.CASCADE)
-    script = models.PositiveIntegerField(verbose_name='ид скрипта', default=0)
-    is_used = models.BooleanField(verbose_name='скрипт подключен', default=False)
-    last_activation = models.DateTimeField(auto_now=True)
-    duration_period = models.PositiveIntegerField(verbose_name='дней активации', default=0)
+# class ActivationSlot(models.Model):
+#     user = models.ForeignKey(ScriptsUser, on_delete=models.CASCADE)
+#     script = models.PositiveIntegerField(verbose_name='ид скрипта', default=0)
+#     is_used = models.BooleanField(verbose_name='скрипт подключен', default=False)
+#     last_activation = models.DateTimeField(auto_now=True)
+#     duration_period = models.PositiveIntegerField(verbose_name='дней активации', default=0)

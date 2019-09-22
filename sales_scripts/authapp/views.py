@@ -18,7 +18,7 @@ def login(request):
         if user and user.is_active:
             auth.login(request, user)
 
-            return HttpResponseRedirect(reverse('main:main_page'))
+            return HttpResponseRedirect(reverse('admin:control_post'))
 
     content = {
         'title': title,

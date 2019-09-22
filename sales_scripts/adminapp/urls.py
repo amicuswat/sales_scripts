@@ -4,6 +4,8 @@ from django.urls import path
 app_name = 'adminapp'
 
 urlpatterns = [
+    path('control_post/', adminapp.control_post, name='control_post'),
+
     path('scripts/read', adminapp.scripts_read, name='scripts_read'),
     path('script/create', adminapp.script_create, name='script_create'),
     path('script/edit/<int:pk>', adminapp.script_edit, name='script_edit'),

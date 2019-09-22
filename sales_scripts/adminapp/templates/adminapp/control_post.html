@@ -1,0 +1,16 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block menu %}
+{% endblock %}
+
+{% block content %}
+    <h2>Капитан на мостике!</h2>
+    <h3>Добро пожаловать, Капитан {{ user.first_name }}</h3>
+    <div>
+    Вот отчет по текущему состоянию дел
+    </div>
+    <div>
+    Ждем ваших приказаний:
+    </div>
+{% endblock %}

@@ -16,6 +16,15 @@ def randomword(length):
    letters = string.ascii_lowercase
    return ''.join(random.choice(letters) for i in range(length))
 
+def control_post(request):
+    title = 'пункт управления'
+
+    content = {
+        'title': title
+    }
+
+    return render(request, 'adminapp/control_post.html', content)
+
 def scripts_read(request):
     title = 'админка/скрипты'
 

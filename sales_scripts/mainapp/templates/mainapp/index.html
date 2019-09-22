@@ -2,29 +2,59 @@
 {% load static %}
 
 {% block menu %}
-    <h2>Добро пожаловать
+
+    <div class="container-first-block">
+
+
+            <div class="upper-menu">
+                <div class="logo">
+                    <img class="logo-img" src="{% static 'img/logo.png' %}">
+                </div>
+                <div class="nav-menu">
+                    <button class="nav-batton">Что это?</button>
+                    <button class="nav-batton">Преимущества</button>
+                    <button class="nav-batton">Цена</button>
+                    <span></span>
+                </div>
+
+            </div>
+            <div class="hor-liner">
+                <hr class="menu-hr">
+            </div>
+            <div >
+                <h1 class="offer-h1">
+                    Простой сервис создания скриптов продаж
+                </h1>
+            </div>
+            <div >
+                <p class="offer-p">
+                    Создать скрипт продаж за 8-15 минут<br>
+                    снизить время на обучение продажников до 30 минут<br>
+                    увеличить конверсию на 50%<br>
+                </p>
+            </div>
         {% if user.is_authenticated %}
+            <div class="central-menu">
+                <button class="main-nav-btn reg-btn"><a class="white-a" href="{% url 'admin:control_post' %}">> В личный кабинет </a> </button>
 
-            <a href="{% url 'auth:edit' %}">
-                {{ user.first_name|default:'Пользователь' }}
-            </a>
-<button><a href="{% url 'auth:logout' %}">выйти</a></button>
+            </div>
+         {% else %}
+            <div class="central-menu">
+            <button class="main-nav-btn reg-btn"><a class="white-a" href="{% url 'auth:register' %}">> Зерегистрируйтесь в сервисе</a> </button>
+            <button class="main-nav-btn"><a class="black-a" href="{% url 'auth:login' %}">> В личный кабинет</a> </button>
+            </div>
 
-        {% else %}
-           <button> <a href="{% url 'auth:login' %}"> вход </a></button>
-            <button> <a href="{% url 'auth:register' %}"> регистрация </a></button>
+
 
 
 
         {% endif %}
-    </h2>
+
+    </div>
+
 {% endblock %}
 
 {% block content %}
-    <h2>Здесь будет основное тело сайта</h2>
-    {% if user.is_authenticated %}
-    <button>
-    <a href="{% url 'admin:scripts_read' %}">скрипты</a>
-    </button>
-    {% endif %}
+
+
 {% endblock %}

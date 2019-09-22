@@ -3,6 +3,92 @@
     margin: 0;
 }
 
+.container-first-block {
+    background-image: url(/static/img/gearbox.jpg);
+    height: 900px;
+    width: auto;
+}
+
+.upper-menu {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 10px 40px;
+    width: auto;
+}
+
+.logo-img {
+    height: 40px;
+    padding-left: 100px;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: flex-end;
+    padding-right: 100px;
+}
+
+.nav-batton {
+    margin: 3px 10px;
+    padding: 3px 10px;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+    background-color: darkred;
+}
+
+.hor-liner {
+    height: 80px;
+}
+
+.menu-hr {
+    border: 1px solid white;
+    margin: 5px 150px;
+}
+
+.offer-h1 {
+    color: white;
+    text-align: center;
+    padding-bottom: 50px;
+    font-size: 2.2em;
+}
+
+.offer-p {
+    color: white;
+    text-align: center;
+    font-size: 1.4em;
+}
+
+.central-menu {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding-top: 80px;
+}
+
+.main-nav-btn {
+    width: 350px;
+    padding: 9px 20px 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+
+
+}
+
+.reg-btn {
+    background-color: darkred;
+}
+
+.white-a {
+    color: white;
+    font-size: 18px;
+}
+
+.black-a {
+     color: black;
+    font-size: 18px;
+}
+
 button {
     max-height: 40px;
 
@@ -13,6 +99,13 @@ button {
 
 li {
     margin: 10px 20px;
+}
+
+
+
+
+.nav-menu {
+    align-content: flex-end;
 }
 
 .change-button {
