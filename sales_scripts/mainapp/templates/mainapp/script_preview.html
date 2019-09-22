@@ -4,13 +4,13 @@
 {% block menu %}
     {% if user.is_authenticated %}
     <div>
-    <button><a href="{% url 'admin:control_post' %}"></a></button>
+    <button><a href="{% url 'admin:script_edit' script.pk %}">Вернуться</a></button>
     </div>
     {% endif %}
 {% endblock %}
 
 {% block content %}
-
+{% if time_in or script.is_active %}
     <div class="top">
         <ol>
             <li>КЛИЕНТ ВСЕГДА ПРАВ</li>
@@ -152,4 +152,9 @@
         block_names[0].style.display = 'block';
 
     </script>
+    {% else %}
+    <div>
+    Время вышло, внесити изменения или активируйте скрипт.
+    </div>
+    {% endif %}
 {% endblock %}

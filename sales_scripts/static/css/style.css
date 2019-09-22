@@ -85,8 +85,174 @@
 }
 
 .black-a {
-     color: black;
+    color: black;
     font-size: 18px;
+}
+
+.container-login {
+    background-image: url(/static/img/cargo-corridor.jpg);
+    height: 900px;
+    background-position: center;
+    padding-top: 35px;
+}
+
+.login {
+    width: 450px;
+    height: 500px;
+    background-color: white;
+    opacity: 0.85;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.into-span {
+    display: block;
+    text-align: center;
+    font-size: 1.3em;
+    color: darkred;
+    font-weight: 600;
+    padding-top: 8px;
+}
+
+.form-horizontal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 400px;
+}
+
+.form-horizontal input {
+    background-color: navajowhite;
+}
+
+.form-horizontal p {
+    display: flex;
+    outline: 1px solid black;
+    padding: 2px;
+}
+
+.form-horizontal p label {
+    margin-left: 35px;
+    width: 190px;
+    display: block;
+    color: darkred;
+}
+
+.enter-form {
+    padding-top: 50px;
+    height: 200px;
+}
+
+.admin_bgi_container {
+    background-image: url(/static/img/ship_bridge.jpg);
+    height: 900px;
+    background-position: center;
+    padding-top: 35px;
+}
+
+.admin_container {
+    width: 1300px;
+    margin: 8px auto;
+    padding: 5px;
+    outline: black solid 1px;
+    background-color: white;
+    opacity: 0.9;
+}
+
+.h2.text-center.head {
+    text-align: center;
+    font-size: 1.3em;
+    text-decoration: underline;
+    text-transform: uppercase;
+    padding: 10px;
+}
+
+.into-h2 {
+    margin-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+    font-weight: 600;
+    font-style: italic;
+    letter-spacing: 0.5px;
+}
+
+.control-post-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 28px;
+    margin-bottom: 10px;
+}
+
+.control-data-container {
+    width: 500px;
+    border: 2px dotted darkred;
+    padding: 5px 5px 20px;
+    border-radius: 15px;
+}
+
+.report-span {
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 35px 95px;
+    display: block;
+    text-decoration: underline;
+}
+
+.report-row {
+    display: flex;
+    padding: 5px;
+    border-bottom: 1px solid black;
+    margin: 0 20px;
+}
+
+.report-left {
+    margin-left: 10px;
+    width: 200px;
+    font-size: 1.1em;
+}
+
+.report-right {
+    border-left: 1px solid black;
+    padding-left: 20px;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.orders-btn {
+    background-color: darkred;
+    padding: 2px 15px;
+    border-radius: 0 15px 15px 0;
+}
+
+a.orders-a {
+    color: white;
+}
+
+.reminder {
+    width: 450px;
+    outline: 1px solid black;
+    padding: 5px;
+}
+
+.explanation-span {
+    font-size: 1.3em;
+    margin: 5px;
+    display: block;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.explanation-p {
+    padding: 3px;
+}
+
+input.form-control.submit {
+    background-color: red;
+    padding: 32px 10px;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 button {
@@ -102,8 +268,6 @@ li {
 }
 
 
-
-
 .nav-menu {
     align-content: flex-end;
 }
@@ -116,12 +280,6 @@ a {
     text-decoration: none;
 }
 
-.admin_container {
-    width: 1300px;
-    margin: 8px auto;
-    padding: 5px;
-    outline: black solid 1px;
-}
 
 .form-horizontal {
     margin: 10px;
@@ -156,7 +314,6 @@ a {
 .display-row {
     display: flex;
 }
-
 
 
 .button {

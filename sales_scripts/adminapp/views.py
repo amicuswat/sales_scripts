@@ -89,6 +89,12 @@ def script_edit(request, pk):
 
     return render(request, 'adminapp/script_edit.html', content)
 
+def script_activate(request, pk):
+    pass
+
+def script_deactivate(request, pk):
+    pass
+
 @login_required(login_url='/auth/login/')
 def control_top_create(request, pk):
     title = 'добавить блок'

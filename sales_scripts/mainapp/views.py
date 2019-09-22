@@ -46,20 +46,17 @@ def script_preview(request, pk):
     situations = Situation.objects.filter(control__control__script=script)
 
     delay = timedelta(hours=2)
-    print(script.last_modified)
-    print(datetime.now(timezone.utc))
+
     is_authorised = script.last_modified + delay > datetime.now(timezone.utc)
 
     content = {
         'title': title,
+        'script': script,
         'controls_top': controls_top,
         'controls_to_controls': controls_to_controls,
-        'situations': situations
+        'situations': situations,
+        'time_in': is_authorised
 
     }
 
-    if is_authorised:
-        return render(request, 'mainapp/script_view.html', content)
-
-    else:
-        return render(request, 'mainapp/script_not_active.html', content)
+    return render(request, 'mainapp/script_preview.html', content)

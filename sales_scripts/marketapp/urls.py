@@ -5,5 +5,5 @@ app_name = 'marketapp'
 
 urlpatterns = [
     path('sd_shop/', marketapp.sd_shop, name='sd_shop'),
-    path('buy/', marketapp.buy_sd, name='buy_sd'),
+    path('buy/<int:amount>/<int:quantity>', marketapp.buy_sd, name='buy_sd'),
 ]

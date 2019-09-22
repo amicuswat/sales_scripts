@@ -5,35 +5,77 @@
 {% endblock %}
 
 {% block content %}
-    <h2>Капитан на мостике!</h2>
-    <h3>Добро пожаловать, Капитан {{ user.first_name }}</h3>
-    <div>
-    Вот отчет по текущему состоянию дел:
-    <ul>
-        <li>Топлива в баке: {{ user.scripts_days }} с/д</li>
-        <li>Скриптов подготовлено: {{ scripts|length }}</li>
-        <li>Активировано скриптов: {{ user.scripts_used }}</li>
-    </ul>
-    </div>
-    <div>
-    Ждем ваших приказаний:
-    <ul>
-        <li>Пополнить баки <button><a href="">Купить с/д</a> </button></li>
-        <li>Посмотреть скрипты <button><a href="{% url 'admin:scripts_read' %}">К списку скриптов</a></button></li>
-        <li>Сделать новый скрипт <button><a href="">Творить</a></button></li>
-    </ul>
-    </div>
-    <div>
-    <h3>Памятка для капитана</h3>
-    <p>Капитан, давайте я напомню что здесь как работает.</p>
-    <p>Вы можете творить сколько угодно скриптов, с этим проблем нет. Можете посмотреть как он будет выглядеть с
-        помощью препросмотра в списке скритов. Но пока мы его не пульнем он будет не стабильным.
-    Только 30 минут будет работать после каждого изменения. Чтобы скрипт стал стабильным нужно его активировать. Там же в списке скриптов можно.
-    Как активируете, появится ссылка. Ее можно дать любым вашим продажникам, скольким хотите, регистрировать никого не надо.
-        Каждый активный скрипт жжет 1 сд(скрипто/день) в день. Если не нужен, глушите его(деактивируйте).
-        Скрипт будет доступен по ссылке, до тех пор пока в баках есть СД. Сожжем все СД дальше не полетим.
-        Скрипты встанут в неактивный режим. Нужно будет дозаправиться и повторно активировать нужные скрипты.
-        Если что, ссылку всегда можно изменить и тогде скрипт фиг кто найдет, пока вы не дадите новую ссылку.
-    </p>
+    <div class="into-h2">- Капитан на мостике!</div>
+    <div class="into-h2">- Добро пожаловать, капитан {{ user.first_name }} !</div>
+    <div class="control-post-container">
+        <div class="control-data-container">
+
+            <div class="report">
+                <span class="report-span">Вот отчет по текущему состоянию дел:</span>
+                <div class="report-row">
+                    <div class="report-left">Топлива в баке:</div>
+                    <div class="report-right">{{ user.scripts_days }} с/д</div>
+                </div>
+                <div class="report-row">
+                    <div class="report-left">Скриптов подготовлено:</div>
+                    <div class="report-right">{{ scripts|length }}</div>
+                </div>
+                <div class="report-row">
+                    <div class="report-left">Активировано скриптов:</div>
+                    <div class="report-right">{{ user.scripts_used }}</div>
+                </div>
+                <div class="report-row">
+                    <div class="report-left">Расход СД в день</div>
+                    <div class="report-right">{{ user.scripts_used }}</div>
+                </div>
+
+            </div>
+            <div class="report">
+                <span class="report-span">Ждем ваших приказов:</span>
+                <div class="report-row">
+                    <div class="report-left">Пополнить баки</div>
+                    <div class="report-right">
+                        <button class="orders-btn"><a class="orders-a" href="{% url 'market:sd_shop' %}">Купить с/д ></a>
+                        </button>
+                    </div>
+                </div>
+                <div class="report-row">
+                    <div class="report-left">Посмотреть скрипты</div>
+                    <div class="report-right">
+                        <button class="orders-btn"><a class="orders-a" href="{% url 'admin:scripts_read' %}">К списку
+                            скриптов ></a></button>
+                    </div>
+                </div>
+                <div class="report-row">
+                    <div class="report-left">Сделать новый скрипт</div>
+                    <div class="report-right">
+                        <button class="orders-btn"><a class="orders-a" href="">Творить ></a></button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="reminder">
+            <span class="explanation-span">Памятка для капитана</span>
+
+            <p class="explanation-p">- Капитан, давайте я напомню что здесь как работает.</p>
+            <p class="explanation-p">- Вы можете творить сколько угодно скриптов, с этим проблем нет. </p>
+            <p class="explanation-p">- Можете посмотреть как будет выглядеть скрипт с
+                помощью препросмотра в списке скритов. </p>
+            <p class="explanation-p">- Но пока мы его не запустим он будет не стабильным.
+                Только 30 минут будет работать после каждого изменения. </p>
+            <p class="explanation-p">- Чтобы скрипт стал стабильным нужно его
+                активировать. Там же в списке скриптов можно.</p>
+            <p class="explanation-p">- Как активируете, появится ссылка. Ее можно дать любым вашим продажникам, скольким хотите, регистрировать
+                никого не надо. </p>
+            <p class="explanation-p">- Каждый активный скрипт жжет 1 сд(скрипто/день) в день. </p>
+            <p class="explanation-p">- Если не нужен, глушите его(деактивируйте) в списке скриптов. </p>
+            <p class="explanation-p">- Скрипт будет доступен по ссылке, до тех пор пока в баках есть СД. </p>
+            <p class="explanation-p">- Сожжем все СД дальше не полетим.
+                Скрипты встанут в неактивный режим.
+                Нужно будет дозаправиться и повторно активировать нужные скрипты. </p>
+           <p class="explanation-p">- Если что, ссылку всегда можно изменить и тогде скрипт фиг кто найдет, пока вы не дадите новую ссылку.
+            </p>
+        </div>
     </div>
 {% endblock %}

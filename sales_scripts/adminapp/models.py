@@ -6,6 +6,7 @@ from authapp.models import ScriptsUser
 
 class Script(models.Model):
     user = models.ForeignKey(ScriptsUser, on_delete=models.CASCADE)
+    description = models.TextField(verbose_name='инструкции для сейлзов', blank=True)
     name = models.CharField(verbose_name='название скрипта', max_length=250)
     url = models.CharField(verbose_name='ссылка', max_length=250)
     is_active = models.BooleanField(verbose_name='активирован', default=False)
