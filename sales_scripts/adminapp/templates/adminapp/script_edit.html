@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-    <form class="form-horizontal" action="{% url 'admin:script_create' %}" method="post" enctype="multipart/form-data">
+    <form class="form-horizontal" action="{% url 'admin:script_edit' script_to_edit.pk %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <b>Название скрипта</b>
         <input type="text" name="script_name" value="{{ script_to_edit.name }}">
@@ -47,7 +47,7 @@
                                         {% if situation.control.name == control_to.name %}
                                             <div>
                                                 <b>{{ situation.situation }}</b><br>
-                                                <i>{{ situation.recomended_action }}</i>
+                                                <pre><i>{{ situation.recomended_action }}</i></pre>
                                              <button>
                                         <a href="{% url 'admin:situation_edit' situation.pk %}">Изменить</a>
                                     </button>

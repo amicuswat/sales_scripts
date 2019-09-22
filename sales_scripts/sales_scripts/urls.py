@@ -22,5 +22,5 @@ urlpatterns = [
     path('admin/', include('adminapp.urls', namespace='admin')),
     path('auth/', include('authapp.urls', namespace='auth')),
     path('', include('mainapp.urls', namespace='main')),
-    # path('market/', include('transactions.urls', namespace='market')),
+    path('market/', include('marketapp.urls', namespace='market')),
 ]

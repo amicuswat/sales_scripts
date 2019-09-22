@@ -33,7 +33,7 @@ def control_post(request):
 def scripts_read(request):
     title = 'админка/скрипты'
 
-    scripts_list = Script.objects.filter(user__username=request.user.username).order_by('name')
+    scripts_list = Script.objects.filter(user__username=request.user.username).order_by('-last_modified')
 
     content = {
         'title': title,
@@ -71,6 +71,11 @@ def script_edit(request, pk):
 
     # for control_top in control_tops:
     #     controls_to_controls[control_top]
+
+    if request.method == 'POST':
+        script_to_edit.name = request.POST['script_name']
+        script_to_edit.save()
+        return HttpResponseRedirect(reverse('admin:scripts_read'))
 
 
     # situations_list = Situation.objects.
