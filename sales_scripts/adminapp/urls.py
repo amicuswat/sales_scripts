@@ -6,6 +6,9 @@ app_name = 'adminapp'
 urlpatterns = [
     path('control_post/', adminapp.control_post, name='control_post'),
 
+    path('team_view/', adminapp.team_view, name='team_view'),
+    path('no_rights/', adminapp.no_rights, name='no_rights'),
+
     path('scripts/read', adminapp.scripts_read, name='scripts_read'),
     path('script/create', adminapp.script_create, name='script_create'),
     path('script/activate/<int:pk>', adminapp.script_activate, name='script_activate'),

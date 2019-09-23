@@ -31,12 +31,15 @@ def login(request):
 
 def register(request):
     title = 'регистрация'
+    test_scripts_days = 30
 
     if request.method == 'POST':
         register_form = ScriptsUserRegisterForm(request.POST)
 
         if register_form.is_valid:
             new_user = register_form.save()
+            new_user.scripts_days += test_scripts_days
+            new_user.save()
             user_rights = UserRights(user=new_user)
             user_rights.save()
 

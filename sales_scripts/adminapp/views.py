@@ -18,18 +18,51 @@ def randomword(length):
    return ''.join(random.choice(letters) for i in range(length))
 
 @login_required(login_url='/auth/login/')
+def no_rights(request):
+    title = 'Попытка проникновения! Тревога!'
+    container_size = 'small_container'
+
+    content = {
+        'title': title,
+        'container_size': container_size
+
+    }
+
+    return render(request, 'adminapp/no_rights.html', content)
+
+@login_required(login_url='/auth/login/')
 def control_post(request):
     title = 'пункт управления'
+    container_size = 'large_container'
     scripts = Script.objects.filter(user__pk=request.user.pk).order_by('last_modified')
-    rights = UserRights.objects.filter(user__pk=request.user.pk)
+    rights = get_object_or_404(UserRights, user__pk=request.user.pk)
 
 
     content = {
         'title': title,
-        'scripts': scripts
+        'scripts': scripts,
+        'rights': rights,
+        'container_size': container_size
     }
 
     return render(request, 'adminapp/control_post.html', content)
+
+@login_required(login_url='/auth/login/')
+def team_view(request):
+    title = 'Палуба/команда построена'
+
+    rights = get_object_or_404(UserRights, user__pk=request.user.pk)
+
+    if not rights.can_edit_users:
+        return HttpResponseRedirect(reverse('admin:no_rights'))
+
+
+    content = {
+        'title': title
+    }
+
+    return render(request, 'adminapp/team_view.html', content)
+
 
 @login_required(login_url='/auth/login/')
 def scripts_read(request):

@@ -108,7 +108,7 @@
 .into-span {
     display: block;
     text-align: center;
-    font-size: 1.3em;
+    font-size: 20px;
     color: darkred;
     font-weight: 600;
     padding-top: 8px;
@@ -150,6 +150,13 @@
     padding-top: 35px;
 }
 
+.market_bgi_container {
+    background-image: url(/static/img/market.jpg);
+    height: 900px;
+    background-position: center;
+    padding-top: 35px;
+}
+
 .menu-container {
     padding-right: 150px;
     padding-left: auto;
@@ -165,6 +172,18 @@
     outline: black solid 1px;
     background-color: white;
     opacity: 0.9;
+}
+
+.large_container {
+    width: 1300px;
+}
+
+.medium_container {
+    width: 800px;
+}
+
+.small_container {
+    width: 500px;
 }
 
 .h2.text-center.head {
@@ -323,7 +342,12 @@ a {
     display: flex;
 }
 
+.allarm-h2 {
+    text-align: center;
+    color: red;
+}
 
+/*Стили отображения скрипта*/
 .button {
     margin: 10px 15px;
     padding: 5px 10px;

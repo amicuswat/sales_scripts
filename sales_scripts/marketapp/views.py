@@ -18,9 +18,11 @@ def buy_sd(request, amount, quantity):
 
 def sd_shop(request):
     title = 'Магазин с/д'
+    container_size = 'medium_container'
 
     content = {
-        'title': title
+        'title': title,
+        'container_size': container_size
     }
 
     return render(request, 'marketapp/sd_shop.html', content)
