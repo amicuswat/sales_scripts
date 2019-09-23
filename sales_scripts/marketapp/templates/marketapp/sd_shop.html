@@ -1,78 +1,30 @@
 {% extends 'marketapp/base.html' %}
 {% load static %}
 
-{% block menu %}
-    <div>
-
-    </div>
-
-{% endblock %}
-
 {% block content %}
     <div>
         <div class="market-message">
-            - Извините, Кэп. Карты пока не принимает. Система барахлит. Помехи от черной дыры. Но можем выставить счет
+            - Извините, Кэп. Карты пока не принимаем. Система барахлит. Помехи от черной дыры. Но можем выставить счет
         </div>
-        <div class="market-row">
-            <div class="market-left">Купить 20 СД по 12 руб.</div>
+
+        {% for price in prices %}
+            <div class="market-row" title="{{ price.message }}">
+            <div class="market-left">
+                Купить <span class="market-span">{{ price.volume }}</span> СД
+                по <span class="market-span">{{ price.price }}</span> руб.
+                Экономия <span class="market-span">{{ price.economy }}</span> руб.
+            </div>
             <div class="market-mid">
                 <button class="orders-btn">
-                    <a class="orders-a" href="{% url 'market:buy_sd' '240' '20' %}">Оплатить 240 руб</a>
+                    <a class="orders-a" href="{% url 'market:buy_sd' price.to_pay price.volume %}">Оплатить {{ price.to_pay }} руб</a>
                 </button>
             </div>
-            <div class="market-left">
+            <div class="market-right">
                 <button class="orders-btn"><a class="orders-a" href="">Заказать счет ></a></button>
             </div>
         </div>
-         <div class="market-row">
-            <div class="market-left">Купить 50 СД по 11 руб. Экономия 50 руб..</div>
-            <div class="market-mid">
-                <button class="orders-btn"><a class="orders-a" href="">Оплатить 550 руб</a></button>
-            </div>
-            <div class="market-left">
-                <button class="orders-btn"><a class="orders-a" href="">Заказать счет ></a></button>
-            </div>
-        </div>
-         <div class="market-row">
-            <div class="market-left">Купить 20 СД по 12 руб.</div>
-            <div class="market-mid">
-                <button class="orders-btn"><a class="orders-a" href="">Оплатить 240 руб</a></button>
-            </div>
-            <div class="market-left">
-                <button class="orders-btn"><a class="orders-a" href="">Заказать счет ></a></button>
-            </div>
-        </div>
-         <div class="market-row">
-            <div class="market-left">Купить 20 СД по 12 руб.</div>
-            <div class="market-mid">
-                <button class="orders-btn"><a class="orders-a" href="">Оплатить 240 руб</a></button>
-            </div>
-            <div class="market-left">
-                <button class="orders-btn"><a class="orders-a" href="">Заказать счет ></a></button>
-            </div>
-        </div>
-        <ul>
+        {% endfor %}
 
-            <li>Купить 50 СД по 11 руб. Экономия 50 руб.
-                <button><a href="">Оплатить 550 руб</a></button>
-            </li>
-            <li>Купить 100 СД по 10 руб. Экономия 200 руб.
-                <button><a href="">Оплатить 1000 руб</a></button>
-            </li>
-            <li>Купить 250 СД по 9 руб. Экономия 750 руб.
-                <button><a href="">Оплатить 2250 руб</a></button>
-            </li>
-            <li>Купить 500 СД по 8 руб. Экономия 2000 руб.
-                <button><a href="">Оплатить 4000 руб</a></button>
-            </li>
-            <li>Купить 1000 СД по 7 руб. Экономия 5000 руб.
-                <button><a href="">Оплатить 7000 руб</a></button>
-            </li>
-            <li>Купить 5000 СД по 6 руб. Экономия 30000 руб.
-                <button><a href="">Оплатить 30000 руб</a></button>
-            </li>
-
-        </ul>
     </div>
 
 {% endblock %}

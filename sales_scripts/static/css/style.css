@@ -346,6 +346,31 @@ a {
     text-align: center;
     color: red;
 }
+/*Магазин СД*/
+.market-message {
+    margin: 5px 66px;
+    text-align: center;
+    font-size: 23px;
+    font-style: italic;
+}
+
+.market-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 45px;
+    padding: 5px;
+    outline: 1px solid black;
+}
+
+.market-left {
+    margin: 0 10px;
+    width: 325px;
+    font-size: 16px;
+}
+
+.market-span {
+    font-weight: 600;
+}
 
 /*Стили отображения скрипта*/
 .button {
