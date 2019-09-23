@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
-from authapp.models import ScriptsUser
+from authapp.models import ScriptsUser, UserRights
 from adminapp.models import Script, ControlTop, ControlToControl, Situation
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
@@ -20,7 +20,9 @@ def randomword(length):
 @login_required(login_url='/auth/login/')
 def control_post(request):
     title = 'пункт управления'
-    scripts = Script.objects.filter(user__username=request.user.username).order_by('last_modified')
+    scripts = Script.objects.filter(user__pk=request.user.pk).order_by('last_modified')
+    rights = UserRights.objects.filter(user__pk=request.user.pk)
+
 
     content = {
         'title': title,

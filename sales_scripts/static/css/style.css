@@ -150,6 +150,14 @@
     padding-top: 35px;
 }
 
+.menu-container {
+    padding-right: 150px;
+    padding-left: auto;
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 15px;
+}
+
 .admin_container {
     width: 1300px;
     margin: 8px auto;

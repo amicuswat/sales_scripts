@@ -3,6 +3,8 @@ from .forms import ScriptsUserLoginForm, ScriptsUserRegisterForm, ScriptsUserEdi
 from django.contrib import auth
 from django.urls import reverse
 
+from authapp.models import UserRights
+
 # Create your views here.
 
 def login(request):
@@ -34,7 +36,9 @@ def register(request):
         register_form = ScriptsUserRegisterForm(request.POST)
 
         if register_form.is_valid:
-            register_form.save()
+            new_user = register_form.save()
+            user_rights = UserRights(user=new_user)
+            user_rights.save()
 
             return HttpResponseRedirect(reverse('auth:login'))
 

@@ -17,13 +17,23 @@
 </head>
 <body>
 <div class="admin_bgi_container">
+    {% block menu %}
+        <div class="menu-container">
+            <button class="nav-batton"><a class="orders-a" href="">На мостик</a></button>
+            <button class="nav-batton"><a class="orders-a" href="">Скрипты</a></button>
+            <button class="nav-batton"><a class="orders-a" href="">Команда</a></button>
+            <button class="nav-batton"><a class="orders-a" href="">Магазин</a></button>
+            <button class="nav-batton"><a class="orders-a" href="">Выйти</a></button>
+        </div>
+
+
+    {% endblock %}
     <div class="admin_container">
+
         <div class="h2 text-center head">
             {{ title|capfirst }}
         </div>
-        {% block menu %}
 
-        {% endblock %}
 
 
         {% block content %}
