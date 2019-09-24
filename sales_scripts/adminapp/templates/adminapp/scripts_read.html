@@ -4,45 +4,66 @@
 
 {% block content %}
     <div class="categories_list">
-		<button class="new_category">
-			<a href="{% url 'admin:script_create' %}">новый скрипт</a>
-		</button>
-    <button class="new_category">
-			<a href="{% url 'admin:control_post' %}">Вернуться в рубку</a>
-		</button>
+        {% if not scripts_list %}
+            <div class="market-message">- Кэп, у нас ни одного скрипта нет, мы так не взлетим. Может сварганим какой
+                скриптец по быстрому?
+            </div>
+            <div class="script-start-container">
+                <div class="new-script-lbl">
+                     Создать скрипт >
+                </div>
+                <button class="new_script-btn">
+                    <a class="orders-a" href="{% url 'admin:script_create' %}"> > ЗАПУСК < </a>
+                </button>
+            </div>
+        {% else %}
+            <div class="market-message">- Кэп, тут у нас кое что есть, можем с имеющимися скриптами поработать. Или
+                новый замастрячить.
+            </div>
+            <div class="script-start-container">
+                <div class="new-script-lbl">
+                    Создать скрипт >
+                </div>
+                <button class="new_script-btn">
+                    <a class="orders-a" href="{% url 'admin:script_create' %}"> > ЗАПУСК < </a>
+                </button>
+            </div>
+        {% endif %}
 
-		{% for script in scripts_list %}
-			<div class="category_record {% if not object.is_active %}not_active{% endif %}">
-				<div class="category_name">
-					{{ script.name|title }}
-				</div>
+
+
+        {% for script in scripts_list %}
+            <div class="category_record {% if not object.is_active %}not_active{% endif %}">
+            <div class="category_name">
+                {{ script.name|title }}
+            </div>
             <div class="category_name">
 
                 {% if script.is_active %}
-                <div class="category_name">
-                <h5> Скрипт активирован и доступен по ссылке:</h5>
-					{{ request.get_host }}{% url 'main:script_view' script.url %}
-                <button><a href="">Деактивировать</a>
-                    </button>
-				</div>
+                    <div class="category_name">
+                        <h5> Скрипт активирован и доступен по ссылке:</h5>
+                        {{ request.get_host }}{% url 'main:script_view' script.url %}
+                        <button><a href="">Деактивировать</a>
+                        </button>
+                    </div>
                 {% else %}
                     <button><a href="">Активировать</a>
                     </button>
                 {% endif %}
-				<div class="category_actions">
+                <div class="category_actions">
 
-					<button>
-						<a href="{% url 'admin:script_edit' script.pk %}">редактировать</a>
-					</button>
                     <button>
-						<a href="{% url 'main:script_preview' script.pk %}">предварительный просмотр</a>
-					</button>
-					<button>
-						<a href="">удалить</a>
-					</button>
-				</div>
+                        <a href="{% url 'admin:script_edit' script.pk %}">редактировать</a>
+                    </button>
+                    <button>
+                        <a href="{% url 'main:script_preview' script.pk %}">предварительный просмотр</a>
+                    </button>
+                    <button>
+                        <a href="">удалить</a>
+                    </button>
+                </div>
 
-			</div>
-		{% endfor%}
-	</div>
+            </div>
+        {% endfor %}
+        </div>
 {% endblock %}

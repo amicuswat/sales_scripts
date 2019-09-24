@@ -28,14 +28,6 @@
     padding-right: 100px;
 }
 
-.nav-batton {
-    margin: 3px 10px;
-    padding: 3px 10px;
-    color: white;
-    border-radius: 4px;
-    font-weight: bold;
-    background-color: darkred;
-}
 
 .hor-liner {
     height: 80px;
@@ -184,6 +176,7 @@
 
 .small_container {
     width: 500px;
+    margin: 0px auto;
 }
 
 .h2.text-center.head {
@@ -252,7 +245,7 @@
     border-radius: 0 15px 15px 0;
 }
 
-a.orders-a {
+.orders-a {
     color: white;
 }
 
@@ -324,13 +317,6 @@ a {
 
 }
 
-.control-width-350 {
-    width: 350px;
-    border: solid #5897fb 1px;
-    padding: 5px;
-    margin: 5px;
-}
-
 .control-width-660 {
     width: 660px;
     border: solid blue 1px;
@@ -346,6 +332,100 @@ a {
     text-align: center;
     color: red;
 }
+
+/*Формы*/
+.form-block {
+    margin: 5px 40px;
+}
+
+.form-label {
+    font-size: 21px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.form-textarea {
+    width: 400px;
+    height: 200px;
+    background-color: navajowhite;
+}
+.small-form-input {
+    display: block;
+    width: 400px;
+}
+
+/*Редактирование скрипта*/
+.all-controls-container {
+    display: flex;
+    outline: 1px solid lightgray;
+    margin: 5px;
+    padding: 5px;
+}
+
+.main_controls {
+    width: 300px;
+    display: flex;
+    outline: 1px solid lightgray;
+    padding: 5px 5px 5px 5px;
+    justify-content: space-between;
+}
+
+/*Мастерская скриптов*/
+.script-start-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 30px 200px;
+}
+
+.new_script-btn {
+    padding: 45px 10px;
+    border-radius: 50%;
+    background-color: darkred;
+    line-height: 1px;
+}
+
+.new-script-lbl {
+    font-size: 30px;
+    margin: auto 0;
+    font-weight: 600;
+}
+
+.crud-button {
+       margin: 0 0px;
+    padding: 2px 4px;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+    max-height: 25px;
+    background-color: firebrick;
+}
+
+.crud-a {
+    color: white;
+    font-size: 10px;
+}
+
+.control-name {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.sub-control {
+    width: 350px;
+    display: flex;
+    outline: 1px solid lightgray;
+    margin: 0 5px 5px;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.situation-container {
+    outline: 1px solid lightgray;
+    padding: 5px;
+    width: 590px;
+    margin-bottom: 5px;
+}
+
 /*Магазин СД*/
 .market-message {
     margin: 5px 66px;
@@ -459,4 +539,26 @@ a {
     width: auto;
     padding: 5px 10px;
     font-size: 20px;
+}
+
+
+
+.form-submit {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+.last-button {
+    margin-bottom: 40% !important;
+}
+
+.nav-button {
+    margin: 3px 10px;
+    padding: 3px 10px;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+    max-height: 25px;
+    background-color: darkred !important;
 }

@@ -19,17 +19,17 @@
 <div class="admin_bgi_container">
     {% block menu %}
         <div class="menu-container">
-            <button class="nav-batton"><a class="orders-a" href="{% url 'admin:control_post' %}">На мостик</a></button>
+            <button class="nav-button"><a class="orders-a" href="{% url 'admin:control_post' %}">На мостик</a></button>
             {% if rights.can_edit_scripts %}
-            <button class="nav-batton"><a class="orders-a" href="{% url 'admin:scripts_read' %}">Скрипты</a></button>
+            <button class="nav-button"><a class="orders-a" href="{% url 'admin:scripts_read' %}">Скрипты</a></button>
             {% endif %}
             {% if rights.can_edit_users %}
-            <button class="nav-batton"><a class="orders-a" href="">Команда??</a></button>
+            <button class="nav-button"><a class="orders-a" href="">Команда??</a></button>
             {% endif %}
             {% if rights.can_buy_sd %}
-            <button class="nav-batton"><a class="orders-a" href="{% url 'market:sd_shop' %}">Магазин</a></button>
+            <button class="nav-button"><a class="orders-a" href="{% url 'market:sd_shop' %}">Магазин</a></button>
             {% endif %}
-            <button class="nav-batton"><a class="orders-a" href="{% url 'auth:logout' %}">Выйти</a></button>
+            <button class="nav-button"><a class="orders-a" href="{% url 'auth:logout' %}">Выйти</a></button>
         </div>
 
 

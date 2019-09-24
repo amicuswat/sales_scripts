@@ -1,21 +1,20 @@
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from django.urls import reverse
 from authapp.models import ScriptsUser
+from marketapp.models import Purchase, Transaction
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 @login_required(login_url='/auth/login/')
 def buy_sd(request, amount, quantity):
-    title = 'Магазин с/д'
 
     user = get_object_or_404(ScriptsUser, pk=request.user.pk)
     user.scripts_days += quantity
     user.save()
+    purchase = Purchase(user=user, sd_bought=quantity, rubles_payed=amount)
+    purchase.save()
 
-    content ={
-        'title': title
-    }
     return HttpResponseRedirect(reverse('admin:control_post'))
 
 @login_required(login_url='/auth/login/')

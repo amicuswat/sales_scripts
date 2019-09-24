@@ -5,13 +5,22 @@
     <form class="form-horizontal" action="{% url 'admin:situation_create' control_to_control.pk %}" method="post"
           enctype="multipart/form-data">
         {% csrf_token %}
+        <div class="form-block">
+            <div class="form-label">Вариант ситуации</div>
+            <input class="small-form-input" type="text" name="situation" value="">
 
-        <b>Вариант ситуации</b>
-        <input type="text" name="situation" value="">
-        <br>
-        <b>Вариант ситуации</b>
-        <textarea rows="10" cols="45" name="recomended_action" value=""></textarea>
-        <br>
-        <input class="form-control" type="submit" value="сохранить">
+            <div class="form-label">Что говорить?</div>
+            <textarea class="form-textarea" rows="10" cols="45" name="recomended_action" value=""></textarea>
+            <div class="form-submit">
+                <input class="nav-button orders-a" type="submit" value="Сохранить">
+            </div>
+            <div class="form-submit">
+                <button class="nav-button last-button">
+                    <a class="orders-a"
+                       href="{% url 'admin:script_edit' control_to_control.control.script.pk %}">Назад</a>
+                </button>
+            </div>
+        </div>
+
     </form>
 {% endblock %}

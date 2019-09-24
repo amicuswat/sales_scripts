@@ -66,13 +66,17 @@ def team_view(request):
 
 @login_required(login_url='/auth/login/')
 def scripts_read(request):
-    title = 'админка/скрипты'
+    title = 'Мастерская скриптов'
+    container_size = 'medium_container'
+    rights = get_object_or_404(UserRights, user__pk=request.user.pk)
 
     scripts_list = Script.objects.filter(user__username=request.user.username).order_by('-last_modified')
 
     content = {
         'title': title,
-        'scripts_list': scripts_list
+        'rights': rights,
+        'scripts_list': scripts_list,
+        'container_size': container_size
     }
 
     return render(request, 'adminapp/scripts_read.html', content)
@@ -80,9 +84,14 @@ def scripts_read(request):
 @login_required(login_url='/auth/login/')
 def script_create(request):
     title = 'новый скрипт'
+    container_size = 'small_container'
+    rights = get_object_or_404(UserRights, user__pk=request.user.pk)
 
     if request.method == 'POST':
-        new_script = Script(user=request.user, name=request.POST['script_name'], url=request.POST['url'])
+        new_script = Script(
+            user=request.user, description=request.POST['description'],
+            name=request.POST['script_name'], url=request.POST['url']
+        )
         new_script.save()
         return HttpResponseRedirect(reverse('admin:scripts_read'))
 
@@ -90,6 +99,8 @@ def script_create(request):
 
     content = {
         'title': title,
+        'rights': rights,
+        'container_size': container_size,
         'unique_url': unique_url
     }
 
@@ -103,6 +114,9 @@ def script_edit(request, pk):
     control_tops = ControlTop.objects.filter(script=script_to_edit)
     controls_to_controls = ControlToControl.objects.filter(control__script=script_to_edit)
     situations = Situation.objects.filter(control__control__script=script_to_edit)
+
+    container_size = 'large_container'
+    rights = get_object_or_404(UserRights, user__pk=request.user.pk)
 
     # for control_top in control_tops:
     #     controls_to_controls[control_top]
@@ -119,7 +133,9 @@ def script_edit(request, pk):
         'script_to_edit': script_to_edit,
         'control_tops': control_tops,
         'controls_to_controls': controls_to_controls,
-        'situations': situations
+        'situations': situations,
+        'rights': rights,
+        'container_size': container_size
     }
 
     return render(request, 'adminapp/script_edit.html', content)
@@ -133,16 +149,23 @@ def script_deactivate(request, pk):
 @login_required(login_url='/auth/login/')
 def control_top_create(request, pk):
     title = 'добавить блок'
+    container_size = 'small_container'
+    rights = get_object_or_404(UserRights, user__pk=request.user.pk)
+
 
     script = get_object_or_404(Script, pk=pk)
+    same_controls_count = ControlTop.objects.filter(script=script).count()
+
     if request.method == 'POST':
-        new_control_top = ControlTop(name=request.POST['control_name'], script=script)
+        new_control_top = ControlTop(name=request.POST['control_name'], script=script, position=same_controls_count)
         new_control_top.save()
         return HttpResponseRedirect(reverse('admin:script_edit', args=[script.pk]))
 
     content = {
         'title': title,
-        'script': script
+        'script': script,
+        'rights': rights,
+        'container_size': container_size
     }
 
     return render(request, 'adminapp/control_top_create.html', content)
@@ -150,6 +173,8 @@ def control_top_create(request, pk):
 @login_required(login_url='/auth/login/')
 def control_top_edit(request, pk):
     title = 'добавить блок'
+    container_size = 'small_container'
+    rights = get_object_or_404(UserRights, user__pk=request.user.pk)
 
     control = get_object_or_404(ControlTop, pk=pk)
     if request.method == 'POST':
@@ -159,7 +184,9 @@ def control_top_edit(request, pk):
 
     content = {
         'title': title,
-        'object': control
+        'object': control,
+        'rights': rights,
+        'container_size': container_size
 
     }
 
@@ -168,16 +195,22 @@ def control_top_edit(request, pk):
 @login_required(login_url='/auth/login/')
 def control_to_control_create(request, pk):
     title = 'создать подблок'
+    container_size = 'small_container'
+    rights = get_object_or_404(UserRights, user__pk=request.user.pk)
 
     control_top = get_object_or_404(ControlTop, pk=pk)
+    same_controls_count = ControlToControl.objects.filter(control=control_top).count()
+
     if request.method == 'POST':
-        new_control_to_control = ControlToControl(name=request.POST['control_name'], control=control_top)
+        new_control_to_control = ControlToControl(name=request.POST['control_name'], control=control_top, position=same_controls_count)
         new_control_to_control.save()
         return HttpResponseRedirect(reverse('admin:script_edit', args=[control_top.script.pk]))
 
     content = {
         'title': title,
-        'control_top': control_top
+        'control_top': control_top,
+        'rights': rights,
+        'container_size': container_size
     }
 
     return render(request, 'adminapp/control_to_control_create.html', content)
@@ -185,6 +218,8 @@ def control_to_control_create(request, pk):
 @login_required(login_url='/auth/login/')
 def control_to_control_edit(request, pk):
     title = 'изменить подблок'
+    container_size = 'small_container'
+    rights = get_object_or_404(UserRights, user__pk=request.user.pk)
 
     control = get_object_or_404(ControlToControl, pk=pk)
     if request.method == 'POST':
@@ -194,7 +229,9 @@ def control_to_control_edit(request, pk):
 
     content = {
         'title': title,
-        'control': control
+        'control': control,
+        'rights': rights,
+        'container_size': container_size
     }
 
     return render(request, 'adminapp/control_to_control_edit.html', content)
@@ -202,18 +239,25 @@ def control_to_control_edit(request, pk):
 @login_required(login_url='/auth/login/')
 def situation_create(request, pk):
     title = 'добавляем ситуацию'
+    container_size = 'small_container'
+    rights = get_object_or_404(UserRights, user__pk=request.user.pk)
 
     control_to_control = get_object_or_404(ControlToControl, pk=pk)
+
+    same_situations_count = Situation.objects.filter(control=control_to_control).count()
     if request.method == 'POST':
         new_situation = Situation(situation=request.POST['situation'],
                                   recomended_action=request.POST['recomended_action'],
-                                  control=control_to_control)
+                                  control=control_to_control,
+                                  position=same_situations_count)
         new_situation.save()
         return HttpResponseRedirect(reverse('admin:script_edit', args=[control_to_control.control.script.pk]))
 
     content = {
         'title': title,
-        'control_to_control': control_to_control
+        'control_to_control': control_to_control,
+        'rights': rights,
+        'container_size': container_size
     }
 
     return render(request, 'adminapp/situation_create.html', content)
@@ -221,6 +265,8 @@ def situation_create(request, pk):
 @login_required(login_url='/auth/login/')
 def situation_edit(request, pk):
     title = 'изменить ситуацию'
+    container_size = 'small_container'
+    rights = get_object_or_404(UserRights, user__pk=request.user.pk)
 
     situation = get_object_or_404(Situation, pk=pk)
     if request.method == 'POST':
@@ -231,7 +277,9 @@ def situation_edit(request, pk):
 
     content = {
         'title': title,
-        'situation': situation
+        'situation': situation,
+        'rights': rights,
+        'container_size': container_size
     }
 
     return render(request, 'adminapp/situation_edit.html', content)

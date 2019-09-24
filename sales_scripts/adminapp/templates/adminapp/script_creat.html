@@ -4,13 +4,23 @@
 {% block content %}
     <form class="form-horizontal" action="{% url 'admin:script_create' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <b>Название скрипта</b>
-        <input type="text" name="script_name" value="">
+        <div class="form-block">
+            <div class="form-label">Название скрипта:</div>
+            <input class="small-form-input" type="text" name="script_name" required value="">
+        </div>
+        <div class="form-block" title="Впишите сюда, то что хотите донести сотрудникам или оставьте поле пустым">
+            <div class="form-label">Инструкция для сотрудников:</div>
+            <textarea name="description" class="form-textarea"></textarea>
+
+        </div>
+
         <br>
-        <b>Уникальный адрес</b>
-        <br>
-        <b>{{ unique_url }}</b>
+
         <input type="hidden" name="url" value="{{ unique_url }}">
-        <input class="form-control" type="submit" value="сохранить">
+        <div class="form-submit">
+            <input class="nav-button orders-a" type="submit" value="Сохранить">
+        </div>
+
+
     </form>
 {% endblock %}
