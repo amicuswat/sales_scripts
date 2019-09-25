@@ -159,6 +159,7 @@ def control_top_create(request, pk):
     if request.method == 'POST':
         new_control_top = ControlTop(name=request.POST['control_name'], script=script, position=same_controls_count)
         new_control_top.save()
+        script.save()
         return HttpResponseRedirect(reverse('admin:script_edit', args=[script.pk]))
 
     content = {
@@ -199,11 +200,13 @@ def control_to_control_create(request, pk):
     rights = get_object_or_404(UserRights, user__pk=request.user.pk)
 
     control_top = get_object_or_404(ControlTop, pk=pk)
+    script = get_object_or_404(Script, pk=control_top.script.pk)
     same_controls_count = ControlToControl.objects.filter(control=control_top).count()
 
     if request.method == 'POST':
         new_control_to_control = ControlToControl(name=request.POST['control_name'], control=control_top, position=same_controls_count)
         new_control_to_control.save()
+        script.save()
         return HttpResponseRedirect(reverse('admin:script_edit', args=[control_top.script.pk]))
 
     content = {
@@ -243,6 +246,7 @@ def situation_create(request, pk):
     rights = get_object_or_404(UserRights, user__pk=request.user.pk)
 
     control_to_control = get_object_or_404(ControlToControl, pk=pk)
+    script = get_object_or_404(Script, pk=control_to_control.control.script.pk)
 
     same_situations_count = Situation.objects.filter(control=control_to_control).count()
     if request.method == 'POST':
@@ -251,6 +255,7 @@ def situation_create(request, pk):
                                   control=control_to_control,
                                   position=same_situations_count)
         new_situation.save()
+        script.save()
         return HttpResponseRedirect(reverse('admin:script_edit', args=[control_to_control.control.script.pk]))
 
     content = {

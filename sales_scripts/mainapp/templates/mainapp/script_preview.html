@@ -4,7 +4,7 @@
 {% block menu %}
     {% if user.is_authenticated %}
     <div>
-    <button><a href="{% url 'admin:script_edit' script.pk %}">Вернуться</a></button>
+    <button><a href="{% url 'admin:scripts_read' %}">Вернуться</a></button>
     </div>
     {% endif %}
 {% endblock %}
@@ -12,13 +12,9 @@
 {% block content %}
 {% if time_in or script.is_active %}
     <div class="top">
-        <ol>
-            <li>КЛИЕНТ ВСЕГДА ПРАВ</li>
-            <li>ТОЛЬКО УВАЖИТЕЛЬНЫЙ, ВЕЖЛЕВЫЙ и УСЛУЖЛЕВЫЙ ТОН</li>
-            <li>НЕ ВСТУПАТЬ В СПОР С КЛИЕНТОМ (даже если он неправ)</li>
-            <li>ВСЕ СПОРНЫЕ ВОПРОСЫ РЕШАЮТСЯ МИРНО (см. пункт №2)</li>
-        </ol>
-        <p>(если вы не можете решить спорный вопрос, передаете всю информацию сотруднику выше по должности)</p>
+        <pre>
+            {{ script.description }}
+        </pre>
     </div>
 
 
@@ -71,12 +67,14 @@
                 if (second_list) {
                     for (let z = 0; z < second_list.length; z += 1) {
                         second_list[z].style.display = 'none';
+
                     }
                 }
                 for (let z = 0; z < list_to_change.length; z += 1) {
                     list_to_change[z].style.display = 'none';
                 }
                 controled_element.style.display = 'block';
+
             });
 
         };

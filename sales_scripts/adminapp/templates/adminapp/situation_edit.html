@@ -6,12 +6,23 @@
           enctype="multipart/form-data">
         {% csrf_token %}
 
-        <b>Вариант ситуации</b>
-        <input type="text" name="situation" value="{{ situation.situation }}">
-        <br>
-        <b>Вариант ситуации</b>
-        <textarea rows="10" cols="45" name="recomended_action" value="">{{ situation.recomended_action }}</textarea>
-        <br>
-        <input class="form-control" type="submit" value="сохранить">
+        <div class="form-block">
+            <div class="form-label">Вариант ситуации</div>
+            <input class="small-form-input" type="text" name="situation" required value="{{ situation.situation }}">
+
+            <div class="form-label">Что говорить?</div>
+            <textarea class="form-textarea" rows="10" cols="45" name="recomended_action" >{{ situation.recomended_action }}</textarea>
+            <div class="form-submit">
+                <input class="nav-button orders-a" type="submit" value="Сохранить">
+            </div>
+            <div class="form-submit">
+                <button class="nav-button last-button">
+                    <a class="orders-a"
+                       href="{% url 'admin:script_edit' situation.control.control.script.pk %}">Назад</a>
+                </button>
+            </div>
+        </div>
+
     </form>
+
 {% endblock %}
