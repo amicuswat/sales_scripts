@@ -9,11 +9,11 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url='/auth/login/')
 def buy_sd(request, amount, quantity):
 
-    user = get_object_or_404(ScriptsUser, pk=request.user.pk)
-    user.scripts_days += quantity
-    user.save()
-    purchase = Purchase(user=user, sd_bought=quantity, rubles_payed=amount)
-    purchase.save()
+    # user = get_object_or_404(ScriptsUser, pk=request.user.pk)
+    # user.scripts_days += quantity
+    # user.save()
+    # purchase = Purchase(user=user, sd_bought=quantity, rubles_payed=amount)
+    # purchase.save()
 
     return HttpResponseRedirect(reverse('admin:control_post'))
 

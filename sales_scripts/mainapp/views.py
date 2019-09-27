@@ -30,7 +30,9 @@ def script_view(request, script_url):
         'title': title,
         'controls_top':controls_top,
         'controls_to_controls': controls_to_controls,
-        'situations': situations
+        'situations': situations,
+        'script': script
+
 
     }
 

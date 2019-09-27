@@ -17,6 +17,12 @@
 </head>
 <body>
 <div class="container-login">
+{% block menu %}
+    <div class="menu-container">
+
+            <button class="nav-button"><a class="orders-a" href="{% url 'main:main_page' %}">Назад</a></button>
+        </div>
+{% endblock %}
     <div class="login">
         <div class="h2 text-center head">
             <span class="into-span">Добро пожаловать на борт, Кэп!</span>

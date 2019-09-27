@@ -8,7 +8,7 @@ body {
 }
 
 .container-first-block {
-    background-image: url(/static/img/gearbox.jpg);
+    background-image: url(/static/img/Gearbox.png);
     height: 900px;
     width: auto;
 }
@@ -86,7 +86,7 @@ body {
 }
 
 .container-login {
-    background-image: url(/static/img/cargo-corridor.jpg);
+    background-image: url(/static/img/cargo-corridor.png);
     height: 900px;
     background-position: center;
     padding-top: 35px;
@@ -140,14 +140,14 @@ body {
 }
 
 .admin_bgi_container {
-    background-image: url(/static/img/ship_bridge.jpg);
+    background-image: url(/static/img/ship_bridge.png);
     height: 900px;
     background-position: center;
     padding-top: 35px;
 }
 
 .market_bgi_container {
-    background-image: url(/static/img/market.jpg);
+    background-image: url(/static/img/market.png);
     height: 900px;
     background-position: center;
     padding-top: 35px;

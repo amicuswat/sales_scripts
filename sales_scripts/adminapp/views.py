@@ -153,11 +153,13 @@ def script_edit(request, pk):
 def check_transaction(request, user):
     print("Checking transaction")
 
-    latest_transaction = Transaction.objects.filter(user=user).order_by('-date_created')[0]
+    latest_transactions = Transaction.objects.filter(user=user).order_by('-date_created')
 
-    if not latest_transaction:
+    if not latest_transactions:
         new_transaction = Transaction(user=user)
         return new_transaction
+    else:
+        latest_transaction = latest_transactions[0]
 
     days_passed = (datetime.now(timezone.utc) - latest_transaction.date_created).days
 
