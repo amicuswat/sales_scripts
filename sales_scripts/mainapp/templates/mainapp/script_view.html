@@ -3,22 +3,18 @@
 
 {% block menu %}
     {% if user.is_authenticated %}
-    <div>
-    <button><a href="{% url 'admin:control_post' %}"></a></button>
-    </div>
+        <div>
+            <button class="nav-button"><a class="orders-a" href="{% url 'admin:control_post' %}">Назад</a></button>
+        </div>
     {% endif %}
 {% endblock %}
 
 {% block content %}
 
     <div class="top">
-        <ol>
-            <li>КЛИЕНТ ВСЕГДА ПРАВ</li>
-            <li>ТОЛЬКО УВАЖИТЕЛЬНЫЙ, ВЕЖЛЕВЫЙ и УСЛУЖЛЕВЫЙ ТОН</li>
-            <li>НЕ ВСТУПАТЬ В СПОР С КЛИЕНТОМ (даже если он неправ)</li>
-            <li>ВСЕ СПОРНЫЕ ВОПРОСЫ РЕШАЮТСЯ МИРНО (см. пункт №2)</li>
-        </ol>
-        <p>(если вы не можете решить спорный вопрос, передаете всю информацию сотруднику выше по должности)</p>
+        <pre class="pre-description">
+            {{ script.description }}
+        </pre>
     </div>
 
 
@@ -87,8 +83,8 @@
         let second_level_controls_block;
         let right_menu_button;
         let content_block;
-         let situation_element;
-         let instruction_element;
+        let situation_element;
+        let instruction_element;
 
         // Checking first level controls
         {% for control_top in controls_top %}
@@ -150,6 +146,16 @@
 
         document.querySelector('.content-secretary').style.display = 'block';
         block_names[0].style.display = 'block';
+
+        let reloading_time = 36000000;
+        let interval_checking = 60000;
+
+        setInterval(function () {
+            let end_timer = Date.now() + reloading_time;
+            if (end_timer < Date.now()) {
+                window.location.reload(true);
+            }
+        }, interval_checking)
 
     </script>
 {% endblock %}

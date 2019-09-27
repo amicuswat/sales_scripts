@@ -3,6 +3,10 @@
     margin: 0;
 }
 
+body {
+    background-color: lightgray;
+}
+
 .container-first-block {
     background-image: url(/static/img/gearbox.jpg);
     height: 900px;
@@ -426,6 +430,46 @@ a {
     margin-bottom: 5px;
 }
 
+.scripts-container {
+    padding: 5px;
+    margin: 5px;
+    outline: 1px solid lightgrey;
+}
+
+.script_name {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 24px;
+    text-decoration: underline;
+    padding-left: 40px;
+}
+
+.info-message {
+    font-weight: 600;
+    font-style: italic;
+    font-size: 13px;
+    padding: 3px;
+}
+
+.script-url {
+    color: blue;
+    padding: 3px;
+    margin-top: 3px;
+}
+
+.script-url-container {
+    display: flex;
+    outline: 1px solid lightgrey;
+    padding: 5px 0;
+}
+
+.script-controls {
+    outline: 1px solid black;
+    margin: 3px 0;
+    display: flex;
+    justify-content: start;
+}
+
 /*Магазин СД*/
 .market-message {
     margin: 5px 66px;
@@ -498,8 +542,14 @@ a {
 
     outline: 1px solid black;
     margin: 0 4px;
-    width: 680px;
+    width: 725px;
     box-sizing: border-box;
+}
+
+.container-main {
+    outline: 1px solid lightgray;
+    padding: 5px;
+    margin: 5px;
 }
 
 .content-lpr {
@@ -561,4 +611,9 @@ a {
     font-weight: bold;
     max-height: 25px;
     background-color: darkred !important;
+}
+
+.pre-description {
+    font-size: 16px;
+    padding-left: 15px;
 }

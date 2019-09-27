@@ -10,15 +10,14 @@
             </div>
             <div class="script-start-container">
                 <div class="new-script-lbl">
-                     Создать скрипт >
+                    Создать скрипт >
                 </div>
                 <button class="new_script-btn">
                     <a class="orders-a" href="{% url 'admin:script_create' %}"> > ЗАПУСК < </a>
                 </button>
             </div>
         {% else %}
-            <div class="market-message">- Кэп, тут у нас кое что есть, можем с имеющимися скриптами поработать. Или
-                новый замастрячить.
+            <div class="market-message">{{ message }}
             </div>
             <div class="script-start-container">
                 <div class="new-script-lbl">
@@ -33,37 +32,48 @@
 
 
         {% for script in scripts_list %}
-            <div class="category_record {% if not object.is_active %}not_active{% endif %}">
-            <div class="category_name">
-                {{ script.name|title }}
-            </div>
-            <div class="category_name">
+            <div class="scripts-container">
+                <div class="script_name">
+                    {{ script.name|title }}
+                </div>
+                <div class="category_name">
 
-                {% if script.is_active %}
-                    <div class="category_name">
-                        <h5> Скрипт активирован и доступен по ссылке:</h5>
-                        {{ request.get_host }}{% url 'main:script_view' script.url %}
-                        <button><a href="">Деактивировать</a>
+                    {% if script.is_active %}
+                        <div class="script-active-container">
+                            <div class="info-message">Скрипт активирован и доступен по ссылке:</div>
+                            <div class="script-url-container">
+                                <div class="script-url"> {{ request.get_host }}{% url 'main:script_view' script.url %}</div>
+                                <button class="nav-button">
+                                    <a class="orders-a" href="{% url 'main:script_view' script.url %}">Перейти</a>
+                                </button>
+                            </div>
+
+                        </div>
+                    {% endif %}
+                    <div class="script-controls">
+                        {% if script.is_active %}
+                            <button class="nav-button">
+                                <a class="orders-a"
+                                   href="{% url 'admin:script_deactivate' script.pk %}">Деактивировать</a>
+                            </button>
+                        {% else %}
+                            <button class="nav-button"><a class="orders-a" href="{% url 'admin:script_activate' script.pk %}">Активировать</a>
+                            </button>
+                        {% endif %}
+
+                        <button class="nav-button">
+                            <a class="orders-a" href="{% url 'admin:script_edit' script.pk %}">Редактировать</a>
+                        </button>
+                        <button class="nav-button">
+                            <a class="orders-a" href="{% url 'main:script_preview' script.pk %}">Предварительный просмотр</a>
+                        </button>
+                        <button class="nav-button">
+                            <a class="orders-a" href="">Удалить</a>
                         </button>
                     </div>
-                {% else %}
-                    <button><a href="">Активировать</a>
-                    </button>
-                {% endif %}
-                <div class="category_actions">
 
-                    <button>
-                        <a href="{% url 'admin:script_edit' script.pk %}">редактировать</a>
-                    </button>
-                    <button>
-                        <a href="{% url 'main:script_preview' script.pk %}">предварительный просмотр</a>
-                    </button>
-                    <button>
-                        <a href="">удалить</a>
-                    </button>
                 </div>
-
             </div>
         {% endfor %}
-        </div>
+
 {% endblock %}

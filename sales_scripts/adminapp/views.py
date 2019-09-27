@@ -2,9 +2,13 @@ from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from authapp.models import ScriptsUser, UserRights
 from adminapp.models import Script, ControlTop, ControlToControl, Situation
+from marketapp.models import Transaction
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 import random, string
+from datetime import timedelta, datetime, timezone
+import datetime as dt
+
 
 # Create your views here.
 
@@ -14,8 +18,9 @@ import random, string
 # Удалить скрипт
 
 def randomword(length):
-   letters = string.ascii_lowercase
-   return ''.join(random.choice(letters) for i in range(length))
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for i in range(length))
+
 
 @login_required(login_url='/auth/login/')
 def no_rights(request):
@@ -30,6 +35,7 @@ def no_rights(request):
 
     return render(request, 'adminapp/no_rights.html', content)
 
+
 @login_required(login_url='/auth/login/')
 def control_post(request):
     title = 'пункт управления'
@@ -37,6 +43,7 @@ def control_post(request):
     scripts = Script.objects.filter(user__pk=request.user.pk).order_by('last_modified')
     rights = get_object_or_404(UserRights, user__pk=request.user.pk)
 
+    check_transaction(request, request.user)
 
     content = {
         'title': title,
@@ -47,6 +54,7 @@ def control_post(request):
 
     return render(request, 'adminapp/control_post.html', content)
 
+
 @login_required(login_url='/auth/login/')
 def team_view(request):
     title = 'Палуба/команда построена'
@@ -55,7 +63,6 @@ def team_view(request):
 
     if not rights.can_edit_users:
         return HttpResponseRedirect(reverse('admin:no_rights'))
-
 
     content = {
         'title': title
@@ -69,17 +76,20 @@ def scripts_read(request):
     title = 'Мастерская скриптов'
     container_size = 'medium_container'
     rights = get_object_or_404(UserRights, user__pk=request.user.pk)
+    message = '- Кэп, тут у нас кое что есть, можем с имеющимися скриптами поработать. Или новый замастрячить.'
 
-    scripts_list = Script.objects.filter(user__username=request.user.username).order_by('-last_modified')
+    scripts_list = Script.objects.filter(user__username=request.user.username).order_by('-is_active', '-last_modified')
 
     content = {
         'title': title,
         'rights': rights,
         'scripts_list': scripts_list,
-        'container_size': container_size
+        'container_size': container_size,
+        'message': message
     }
 
     return render(request, 'adminapp/scripts_read.html', content)
+
 
 @login_required(login_url='/auth/login/')
 def script_create(request):
@@ -106,6 +116,7 @@ def script_create(request):
 
     return render(request, 'adminapp/script_creat.html', content)
 
+
 @login_required(login_url='/auth/login/')
 def script_edit(request, pk):
     title = 'внести изменения'
@@ -126,7 +137,6 @@ def script_edit(request, pk):
         script_to_edit.save()
         return HttpResponseRedirect(reverse('admin:scripts_read'))
 
-
     # situations_list = Situation.objects.
     content = {
         'title': title,
@@ -140,18 +150,155 @@ def script_edit(request, pk):
 
     return render(request, 'adminapp/script_edit.html', content)
 
+def check_transaction(request, user):
+    print("Checking transaction")
+
+    latest_transaction = Transaction.objects.filter(user=user).order_by('-date_created')[0]
+
+    if not latest_transaction:
+        new_transaction = Transaction(user=user)
+        return new_transaction
+
+    days_passed = (datetime.now(timezone.utc) - latest_transaction.date_created).days
+
+
+    # if today there is a transaction
+    if days_passed == 0:
+        return latest_transaction
+
+    # if yesturday transaction
+    elif days_passed == 1:
+        if user.scripts_days >= user.scripts_used:
+            user.scripts_days -= user.scripts_used
+            user.save()
+            new_transaction = Transaction(user=user, sd_burned=user.scripts_used)
+            new_transaction.save()
+            return new_transaction
+        else:
+            new_transaction = Transaction(user=user, sd_burned=0)
+            new_transaction.save()
+            user.scripts_used = 0
+            user.save()
+            scripts_list = Script.objects.filter(user__pk=user.pk, is_active=True)
+            for each_script in scripts_list:
+                each_script.is_active = False
+                each_script.save()
+            return new_transaction
+
+    # more days passed
+    else:
+        # create a transaction for every day till today
+        for i in range(days_passed):
+            new_transaction_date = latest_transaction.date_created + timedelta(days=1)
+            if i + 1 == days_passed:
+                new_transaction_date = datetime.now(timezone.utc)
+
+            if user.scripts_days >= user.scripts_used:
+
+                new_transaction =  Transaction(user=user, sd_burned=user.scripts_used, date_created=new_transaction_date)
+                new_transaction.save()
+                latest_transaction = new_transaction
+                user.scripts_days -= user.scripts_used
+                user.save()
+            else:
+                new_transaction = Transaction(user=user, sd_burned=0, date_created=new_transaction_date)
+                new_transaction.save()
+                latest_transaction = new_transaction
+                user.scripts_used = 0
+                user.save()
+                scripts_list = Script.objects.filter(user__pk=user.pk, is_active=True)
+                for each_script in scripts_list:
+                    each_script.is_active = False
+                    each_script.save()
+
+
+        # if sd id not enough deactivate scripts and create 0 sd transactions
+        return latest_transaction
+
+
+
 def script_activate(request, pk):
-    pass
+    user = request.user
+
+    script = get_object_or_404(Script, pk=pk)
+    success = '- Норма Кэп, скрипт активирован. Какие еще будут приказы?'
+    failure = '- Ничего не выйдет, Кэп. Бак пуст, без сд не взлетим.'
+    message = ''
+
+    title = 'Мастерская скриптов'
+    container_size = 'medium_container'
+    rights = get_object_or_404(UserRights, user__pk=request.user.pk)
+
+    scripts_list = Script.objects.filter(user__username=request.user.username).order_by('-is_active', '-last_modified')
+
+    latest_transaction = check_transaction(request, user)
+
+    if user.scripts_used < latest_transaction.sd_burned:
+        script.is_active = True
+        script.save()
+        user.scripts_used += 1
+        user.save()
+
+        message = success
+    elif user.scripts_days > 0:
+        latest_transaction.sd_burned += 1
+        latest_transaction.save()
+        # activating script
+        script.is_active = True
+        script.save()
+        # change user data
+        user.scripts_days -= 1
+        user.scripts_used += 1
+        user.save()
+        message = success
+    else:
+        message = failure
+
+    content = {
+        'title': title,
+        'rights': rights,
+        'scripts_list': scripts_list,
+        'container_size': container_size,
+        'message': message
+    }
+
+    return render(request, 'adminapp/scripts_read.html', content)
+
 
 def script_deactivate(request, pk):
-    pass
+    user = request.user
+
+    script = get_object_or_404(Script, pk=pk)
+
+    message = '- Кэп, приказ выполнен, скрипт деактивирован!'
+
+    title = 'Мастерская скриптов'
+    container_size = 'medium_container'
+    rights = get_object_or_404(UserRights, user__pk=request.user.pk)
+
+    script.is_active = False
+    script.save()
+    user.scripts_used -= 1
+    user.save()
+
+    scripts_list = Script.objects.filter(user__username=request.user.username).order_by('-is_active', '-last_modified')
+
+    content = {
+        'title': title,
+        'rights': rights,
+        'scripts_list': scripts_list,
+        'container_size': container_size,
+        'message': message
+    }
+
+    return render(request, 'adminapp/scripts_read.html', content)
+
 
 @login_required(login_url='/auth/login/')
 def control_top_create(request, pk):
     title = 'добавить блок'
     container_size = 'small_container'
     rights = get_object_or_404(UserRights, user__pk=request.user.pk)
-
 
     script = get_object_or_404(Script, pk=pk)
     same_controls_count = ControlTop.objects.filter(script=script).count()
@@ -170,6 +317,7 @@ def control_top_create(request, pk):
     }
 
     return render(request, 'adminapp/control_top_create.html', content)
+
 
 @login_required(login_url='/auth/login/')
 def control_top_edit(request, pk):
@@ -193,6 +341,7 @@ def control_top_edit(request, pk):
 
     return render(request, 'adminapp/control_top_edit.html', content)
 
+
 @login_required(login_url='/auth/login/')
 def control_to_control_create(request, pk):
     title = 'создать подблок'
@@ -204,7 +353,8 @@ def control_to_control_create(request, pk):
     same_controls_count = ControlToControl.objects.filter(control=control_top).count()
 
     if request.method == 'POST':
-        new_control_to_control = ControlToControl(name=request.POST['control_name'], control=control_top, position=same_controls_count)
+        new_control_to_control = ControlToControl(name=request.POST['control_name'], control=control_top,
+                                                  position=same_controls_count)
         new_control_to_control.save()
         script.save()
         return HttpResponseRedirect(reverse('admin:script_edit', args=[control_top.script.pk]))
@@ -217,6 +367,7 @@ def control_to_control_create(request, pk):
     }
 
     return render(request, 'adminapp/control_to_control_create.html', content)
+
 
 @login_required(login_url='/auth/login/')
 def control_to_control_edit(request, pk):
@@ -238,6 +389,7 @@ def control_to_control_edit(request, pk):
     }
 
     return render(request, 'adminapp/control_to_control_edit.html', content)
+
 
 @login_required(login_url='/auth/login/')
 def situation_create(request, pk):
@@ -266,6 +418,7 @@ def situation_create(request, pk):
     }
 
     return render(request, 'adminapp/situation_create.html', content)
+
 
 @login_required(login_url='/auth/login/')
 def situation_edit(request, pk):

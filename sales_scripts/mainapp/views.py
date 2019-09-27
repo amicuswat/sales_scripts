@@ -3,6 +3,7 @@ from datetime import timedelta, datetime, timezone
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from authapp.models import ScriptsUser
 from adminapp.models import Script, ControlTop, ControlToControl, Situation
+import adminapp.views as adminapp
 
 # Create your views here.
 
@@ -22,6 +23,8 @@ def script_view(request, script_url):
     controls_top = ControlTop.objects.filter(script=script)
     controls_to_controls = ControlToControl.objects.filter(control__script=script)
     situations = Situation.objects.filter(control__control__script=script)
+    user = get_object_or_404(ScriptsUser, pk=script.user.pk)
+    print(user.username)
 
     content = {
         'title': title,
@@ -30,6 +33,8 @@ def script_view(request, script_url):
         'situations': situations
 
     }
+
+    adminapp.check_transaction(request, user)
 
     if request.user.is_authenticated or script.is_active:
         return render(request, 'mainapp/script_view.html', content)

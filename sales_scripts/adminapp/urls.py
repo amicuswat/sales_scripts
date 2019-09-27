@@ -14,6 +14,8 @@ urlpatterns = [
     path('script/activate/<int:pk>', adminapp.script_activate, name='script_activate'),
     path('script/deactivate/<int:pk>', adminapp.script_deactivate, name='script_deactivate'),
     path('script/edit/<int:pk>', adminapp.script_edit, name='script_edit'),
+    path('script/activate/<int:pk>', adminapp.script_activate, name='script_activate'),
+    path('script/deactivate/<int:pk>', adminapp.script_deactivate, name='script_deactivate'),
 
     path('control_top/create/<int:pk>', adminapp.control_top_create, name='control_top_create'),
     path('control_top/edit/<int:pk>', adminapp.control_top_edit, name='control_top_edit'),
