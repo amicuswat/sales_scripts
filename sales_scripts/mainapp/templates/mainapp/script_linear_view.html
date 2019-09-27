@@ -1,0 +1,149 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block menu %}
+    {% if user.is_authenticated %}
+        <div>
+            <button class="nav-button"><a class="orders-a" href="{% url 'admin:scripts_read' %}">Вернуться</a></button>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+        <div class="top">
+        <pre class="pre-description">
+            {{ script.description }}
+        </pre>
+        </div>
+
+
+        <div class="bottom">
+            <div class="left">
+                <div class="menu">
+
+                </div>
+                <div class="menu menu-right">
+
+                </div>
+
+                <div class="content">
+
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+            const left_block = document.querySelector('.menu');
+            const right_menu = document.querySelector('.menu-right');
+            const content_container = document.querySelector('.content');
+
+            let first_level_controls = [];
+            let second_level_controls_blocks = [];
+            let second_level_controls = [];
+            let block_names = [];
+            let instructions = [];
+
+            // Functions
+            let create_button = (button_text, button_class = 'button') => {
+                let some_button = document.createElement('a');
+
+                some_button.className = button_class;
+                some_button.href = "#";
+                some_button.textContent = button_text;
+                return some_button;
+            };
+
+            let create_block = (class_name) => {
+                let content_block = document.createElement('div');
+                content_block.className = class_name;
+                content_block.style.display = 'none';
+                return content_block;
+            };
+
+            let add_listener = (some_button, controled_element, list_to_change, second_list = []) => {
+                some_button.addEventListener('click', () => {
+                    if (second_list) {
+                        for (let z = 0; z < second_list.length; z += 1) {
+                            second_list[z].style.display = 'none';
+
+                        }
+                    }
+                    for (let z = 0; z < list_to_change.length; z += 1) {
+                        list_to_change[z].style.display = 'none';
+                    }
+                    controled_element.style.display = 'block';
+
+                });
+
+            };
+
+            //        let control_block = (button_text, button_class, )
+
+            let menu_button;
+            let second_level_controls_block;
+            let right_menu_button;
+            let content_block;
+            let situation_element;
+            let instruction_element;
+
+            // Checking first level controls
+            // forming second level controls blocks
+
+
+
+                        // формируем блок c ситуациями
+                        content_block = create_block('content-secretary');
+                        content_container.appendChild(content_block);
+                        block_names.push(content_block);
+
+                        // добавляем событие по кнопке
+
+
+                        {% for situation in situations %}
+
+                                situation_element = create_button("{{ situation.situation }}", button_class = 'button situation');
+                                content_block.appendChild(situation_element);
+
+                                instruction_element = document.createElement('pre');
+
+                                instruction_element.className = 'instruction';
+
+                                instruction_element.href = "#";
+                                instruction_element.innerHTML = `{{ situation.recomended_action }}`;
+                                instruction_element.style.display = 'none';
+
+                                situation_element.appendChild(instruction_element);
+                                instructions.push(instruction_element);
+
+                                add_listener(situation_element, instruction_element, instructions);
+
+
+                        {% endfor %}
+
+
+
+
+
+
+
+
+            document.querySelector('.content-secretary').style.display = 'block';
+            block_names[0].style.display = 'block';
+
+            {#    count down and reload #}
+
+            let reloading_time = 600000;
+            let interval_checking = 60000;
+
+            setInterval(function () {
+                let end_timer = Date.now() + reloading_time;
+                if (end_timer < Date.now()) {
+                    window.location.reload(true);
+                }
+            }, interval_checking)
+
+        </script>
+
+{% endblock %}
