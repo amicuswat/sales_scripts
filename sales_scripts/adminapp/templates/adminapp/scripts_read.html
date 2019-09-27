@@ -5,29 +5,43 @@
 {% block content %}
     <div class="categories_list">
         {% if not scripts_list %}
-            <div class="market-message">- Кэп, у нас ни одного скрипта нет, мы так не взлетим. Может сварганим какой
+            <div class="market-message">
+                - Кэп, у нас ни одного скрипта нет, мы так не взлетим. Может сварганим какой
                 скриптец по быстрому?
             </div>
-            <div class="script-start-container">
-                <div class="new-script-lbl">
-                    Создать скрипт >
-                </div>
-                <button class="new_script-btn">
-                    <a class="orders-a" href="{% url 'admin:script_create' %}"> > ЗАПУСК < </a>
-                </button>
-            </div>
         {% else %}
-            <div class="market-message">{{ message }}
-            </div>
-            <div class="script-start-container">
-                <div class="new-script-lbl">
-                    Создать скрипт >
-                </div>
-                <button class="new_script-btn">
-                    <a class="orders-a" href="{% url 'admin:script_create' %}"> > ЗАПУСК < </a>
-                </button>
+            <div class="market-message">
+                {{ message }}
             </div>
         {% endif %}
+        <div class="script-types-container">
+            <div class="script-start-container">
+                <div class="new-script-lbl">
+                    Создать <br><span class="script-type-span">Двухмерный</span><br> скрипт:
+                </div>
+                <button class="new_script-btn">
+                    <a class="orders-a" href="{% url 'admin:script_create' '2' %}"> > ЗАПУСК < </a>
+                </button>
+            </div>
+            <div class="script-start-container">
+                <div class="new-script-lbl">
+                    Создать <br><span class="script-type-span">Трехмерный</span> <br>скрипт:
+                </div>
+                <button class="new_script-btn">
+                    <a class="orders-a" href="{% url 'admin:script_create' '3' %}"> > ЗАПУСК < </a>
+                </button>
+            </div>
+            <div class="script-start-container">
+                <div class="new-script-lbl">
+                    Создать <br><span class="script-type-span">Линейный</span> <br>скрипт:
+                </div>
+                <button class="new_script-btn">
+                    <a class="orders-a" href="{% url 'admin:script_create' '1' %}"> > ЗАПУСК < </a>
+                </button>
+            </div>
+
+        </div>
+
 
 
 
@@ -42,7 +56,8 @@
                         <div class="script-active-container">
                             <div class="info-message">Скрипт активирован и доступен по ссылке:</div>
                             <div class="script-url-container">
-                                <div class="script-url"> {{ request.get_host }}{% url 'main:script_view' script.url %}</div>
+                                <div class="script-url">
+                                    {{ request.get_host }}{% url 'main:script_view' script.url %}</div>
                                 <button class="nav-button">
                                     <a class="orders-a" href="{% url 'main:script_view' script.url %}">Перейти</a>
                                 </button>
@@ -57,7 +72,8 @@
                                    href="{% url 'admin:script_deactivate' script.pk %}">Деактивировать</a>
                             </button>
                         {% else %}
-                            <button class="nav-button"><a class="orders-a" href="{% url 'admin:script_activate' script.pk %}">Активировать</a>
+                            <button class="nav-button"><a class="orders-a"
+                                                          href="{% url 'admin:script_activate' script.pk %}">Активировать</a>
                             </button>
                         {% endif %}
 
@@ -65,7 +81,8 @@
                             <a class="orders-a" href="{% url 'admin:script_edit' script.pk %}">Редактировать</a>
                         </button>
                         <button class="nav-button">
-                            <a class="orders-a" href="{% url 'main:script_preview' script.pk %}">Предварительный просмотр</a>
+                            <a class="orders-a" href="{% url 'main:script_preview' script.pk %}">Предварительный
+                                просмотр</a>
                         </button>
                         <button class="nav-button">
                             <a class="orders-a" href="">Удалить</a>

@@ -32,9 +32,15 @@ class Situation(models.Model):
     # control_top = models.ForeignKey(ControlTop, on_delete=models.CASCADE)
     # script = models.ForeignKey(Script, on_delete=models.CASCADE)
 
-# class ActivationSlot(models.Model):
-#     user = models.ForeignKey(ScriptsUser, on_delete=models.CASCADE)
-#     script = models.PositiveIntegerField(verbose_name='ид скрипта', default=0)
-#     is_used = models.BooleanField(verbose_name='скрипт подключен', default=False)
-#     last_activation = models.DateTimeField(auto_now=True)
-#     duration_period = models.PositiveIntegerField(verbose_name='дней активации', default=0)
+class Situation2D(models.Model):
+    situation = models.CharField(verbose_name='ситуация', max_length=250)
+    recomended_action = models.TextField(verbose_name='что говорим', blank=True)
+    position = models.PositiveSmallIntegerField(verbose_name='позиция', default=0)
+    control_top = models.ForeignKey(ControlTop, on_delete=models.CASCADE)
+    # script = models.ForeignKey(Script, on_delete=models.CASCADE)
+
+class SituationLinear(models.Model):
+    situation = models.CharField(verbose_name='ситуация', max_length=250)
+    recomended_action = models.TextField(verbose_name='что говорим', blank=True)
+    position = models.PositiveSmallIntegerField(verbose_name='позиция', default=0)
+    script = models.ForeignKey(Script, on_delete=models.CASCADE)

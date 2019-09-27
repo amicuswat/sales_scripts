@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-    <form class="form-horizontal" action="{% url 'admin:script_create' %}" method="post" enctype="multipart/form-data">
+    <form class="form-horizontal" action="{% url 'admin:script_create' type %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-block">
             <div class="form-label">Название скрипта:</div>

@@ -21,65 +21,84 @@
             <div class="form-submit">
                 <input class="nav-button orders-a" type="submit" value="Cохранить">
             </div>
-             <div class="form-submit">
-            <button class="nav-button last-button"><a class="orders-a" href="{% url 'admin:scripts_read' %}">Назад</a>
-            </button>
-        </div>
+            <div class="form-submit">
+                <button class="nav-button last-button"><a class="orders-a"
+                                                          href="{% url 'admin:scripts_read' %}">Назад</a>
+                </button>
+            </div>
 
         </form>
 
 
     </div>
+    {% if type == 1 %}
 
-    {% if not control_tops %}
-        <div>
+        <div class="situations-container situations-linear">
+
+            {% for situation in situations %}
+                {% if situation.script == script_to_edit %}
+                    <div class="situation-container ">
+                        <div class="control-name">{{ situation.situation }}</div>
+                        <pre><i>{{ situation.recomended_action }}</i></pre>
+
+                        <div class="crud-menu">
+                            <button class="crud-button">
+                                <a class="crud-a"
+                                   href="{% url 'admin:situation_edit' situation.pk type %}">Изменить</a>
+                            </button>
+                            <button class="crud-button">
+                                <a class="crud-a" href="">Выше</a>
+                            </button>
+                            <button class="crud-button">
+                                <a class="crud-a" href="">Ниже</a>
+                            </button>
+                        </div>
+                    </div>
+
+
+                {% endif %}
+            {% endfor %}
+
+
             <button class="nav-button">
-                <a class="white-a" href="{% url 'admin:control_top_create' script_to_edit.pk %}">Добавить блок</a>
+                <a class="orders-a" href="{% url 'admin:situation_create' script_to_edit.pk type %}">Добавить
+                    ситуацию</a>
             </button>
         </div>
-    {% else %}
-        {% for control_top in control_tops %}
-            <div class="all-controls-container">
 
-                <div class="main_controls">
-                    <div class="control-name">{{ control_top.name }}</div>
-                    <div class="crud-menu">
-                        <button class="crud-button">
-                            <a class="crud-a" href="{% url 'admin:control_top_edit' control_top.pk %}">Изменить</a>
-                        </button>
-                        <button class="crud-button">
-                            <a class="crud-a" href="">Выше</a>
-                        </button>
-                        <button class="crud-button">
-                            <a class="crud-a" href="">Ниже</a>
-                        </button>
-                    </div>
-                </div>
 
-                <div class="controls_to_control">
-                    {% for control_to in controls_to_controls %}
+    {% elif type == 2 %}
+        {% if not control_tops %}
+            <div>
+                <button class="nav-button">
+                    <a class="white-a" href="{% url 'admin:control_top_create' script_to_edit.pk %}">Добавить блок</a>
+                </button>
+            </div>
+        {% else %}
+            {% for control_top in control_tops %}
+                <div class="all-controls-container two-d">
+                    <div class="to-take-button">
+                        <div class="controls-and-situations">
 
-                        {% if control_to.control.name == control_top.name %}
-                            <div class="display-row">
-                                <div class="sub-control">
-                                    <div class="control-name">{{ control_to.name }} </div>
-                                    <div class="crud-menu">
-                                        <button class="crud-button">
-                                            <a class="crud-a"
-                                               href="{% url 'admin:control_to_control_edit' control_to.pk %}">Изменить</a>
-                                        </button>
-                                        <button class="crud-button">
-                                            <a class="crud-a" href="">Выше</a>
-                                        </button>
-                                        <button class="crud-button">
-                                            <a class="crud-a" href="">Ниже</a>
-                                        </button>
-                                    </div>
+                            <div class="main_controls">
+                                <div class="control-name">{{ control_top.name }}</div>
+                                <div class="crud-menu">
+                                    <button class="crud-button">
+                                        <a class="crud-a" href="{% url 'admin:control_top_edit' control_top.pk %}">Изменить</a>
+                                    </button>
+                                    <button class="crud-button">
+                                        <a class="crud-a" href="">Выше</a>
+                                    </button>
+                                    <button class="crud-button">
+                                        <a class="crud-a" href="">Ниже</a>
+                                    </button>
                                 </div>
+                            </div>
 
+                            <div class="controls_to_control">
                                 <div class="situations-container">
                                     {% for situation in situations %}
-                                        {% if situation.control.name == control_to.name %}
+                                        {% if situation.control_top.name == control_top.name %}
                                             <div class="situation-container">
                                                 <div class="control-name">{{ situation.situation }}</div>
                                                 <pre><i>{{ situation.recomended_action }}</i></pre>
@@ -87,7 +106,7 @@
                                                 <div class="crud-menu">
                                                     <button class="crud-button">
                                                         <a class="crud-a"
-                                                           href="{% url 'admin:situation_edit' situation.pk %}">Изменить</a>
+                                                           href="{% url 'admin:situation_edit' situation.pk type %}">Изменить</a>
                                                     </button>
                                                     <button class="crud-button">
                                                         <a class="crud-a" href="">Выше</a>
@@ -101,31 +120,128 @@
 
                                         {% endif %}
                                     {% endfor %}
-                                    <button class="nav-button">
-                                        <a class="orders-a" href="{% url 'admin:situation_create' control_to.pk %}">Добавить
-                                            ситуацию</a>
-                                    </button>
+
                                 </div>
-
+                                <button class="nav-button">
+                                    <a class="orders-a" href="{% url 'admin:situation_create' control_top.pk type %}">Добавить
+                                        ситуацию</a>
+                                </button>
                             </div>
-                        {% endif %}
-
-                        <div>
 
                         </div>
-                    {% endfor %}
-                    <button class="nav-button">
-                        <a class="orders-a" href="{% url 'admin:control_to_control_create' control_top.pk %}">Добавить
-                            подблок</a>
-                    </button>
+                     <div>
+                                <button class="nav-button"><a class="orders-a"
+                                                              href="{% url 'admin:control_top_create' script_to_edit.pk %}">Добавить
+                                    блок</a></button>
+                            </div>
+                    </div>
+
                 </div>
-            </div>
+
+            {% endfor %}
+
+        {% endif %}
+    {% else %}
+        {% if not control_tops %}
             <div>
-                <button class="nav-button"><a class="orders-a"
-                                              href="{% url 'admin:control_top_create' script_to_edit.pk %}">Добавить
-                    блок</a></button>
+                <button class="nav-button">
+                    <a class="white-a" href="{% url 'admin:control_top_create' script_to_edit.pk %}">Добавить блок</a>
+                </button>
             </div>
-        {% endfor %}
+        {% else %}
+            {% for control_top in control_tops %}
+                <div class="all-controls-container">
+
+                    <div class="main_controls">
+                        <div class="control-name">{{ control_top.name }}</div>
+                        <div class="crud-menu">
+                            <button class="crud-button">
+                                <a class="crud-a" href="{% url 'admin:control_top_edit' control_top.pk %}">Изменить</a>
+                            </button>
+                            <button class="crud-button">
+                                <a class="crud-a" href="">Выше</a>
+                            </button>
+                            <button class="crud-button">
+                                <a class="crud-a" href="">Ниже</a>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="controls_to_control">
+                        {% for control_to in controls_to_controls %}
+
+                            {% if control_to.control.name == control_top.name %}
+                                <div class="display-row">
+                                    <div class="sub-control">
+                                        <div class="control-name">{{ control_to.name }} </div>
+                                        <div class="crud-menu">
+                                            <button class="crud-button">
+                                                <a class="crud-a"
+                                                   href="{% url 'admin:control_to_control_edit' control_to.pk %}">Изменить</a>
+                                            </button>
+                                            <button class="crud-button">
+                                                <a class="crud-a" href="">Выше</a>
+                                            </button>
+                                            <button class="crud-button">
+                                                <a class="crud-a" href="">Ниже</a>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="situations-container">
+                                        {% for situation in situations %}
+                                            {% if situation.control.name == control_to.name %}
+                                                <div class="situation-container">
+                                                    <div class="control-name">{{ situation.situation }}</div>
+                                                    <pre><i>{{ situation.recomended_action }}</i></pre>
+
+                                                    <div class="crud-menu">
+                                                        <button class="crud-button">
+                                                            <a class="crud-a"
+                                                               href="{% url 'admin:situation_edit' situation.pk type %}">Изменить</a>
+                                                        </button>
+                                                        <button class="crud-button">
+                                                            <a class="crud-a" href="">Выше</a>
+                                                        </button>
+                                                        <button class="crud-button">
+                                                            <a class="crud-a" href="">Ниже</a>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+
+                                            {% endif %}
+                                        {% endfor %}
+                                        <button class="nav-button">
+                                            <a class="orders-a"
+                                               href="{% url 'admin:situation_create' control_to.pk type %}">Добавить
+                                                ситуацию</a>
+                                        </button>
+                                    </div>
+
+                                </div>
+                            {% endif %}
+
+                            <div>
+
+                            </div>
+                        {% endfor %}
+                        <button class="nav-button">
+                            <a class="orders-a" href="{% url 'admin:control_to_control_create' control_top.pk %}">Добавить
+                                подблок</a>
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <button class="nav-button"><a class="orders-a"
+                                                  href="{% url 'admin:control_top_create' script_to_edit.pk %}">Добавить
+                        блок</a></button>
+                </div>
+            {% endfor %}
+
+        {% endif %}
 
     {% endif %}
+
+
 {% endblock %}

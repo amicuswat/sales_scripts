@@ -376,9 +376,12 @@ a {
 
 /*Мастерская скриптов*/
 .script-start-container {
+    outline: 1px solid lightgray;
+    margin: 10px 5px 10px;
+    padding: 5px 5px 15px;
+    width: 160px;
     display: flex;
-    justify-content: space-evenly;
-    margin: 30px 200px;
+    flex-direction: column;
 }
 
 .new_script-btn {
@@ -386,12 +389,21 @@ a {
     border-radius: 50%;
     background-color: darkred;
     line-height: 1px;
+    margin: 0 auto;
+}
+
+.situations-linear {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .new-script-lbl {
-    font-size: 30px;
+    font-size: 20px;
     margin: auto 0;
     font-weight: 600;
+    text-align: center;
+    padding: 10px;
 }
 
 .crud-button {
@@ -418,9 +430,22 @@ a {
     width: 350px;
     display: flex;
     outline: 1px solid lightgray;
-    margin: 0 5px 5px;
+    margin: 0 0px 5px 5px;
     justify-content: space-between;
     padding: 5px;
+}
+
+.situations-container {
+    margin-left: 5px;
+}
+
+.two-d {
+    display: flex;
+    justify-content: center;
+}
+
+.controls-and-situations {
+    display: flex;
 }
 
 .situation-container {
@@ -469,6 +494,12 @@ a {
     display: flex;
     justify-content: start;
 }
+
+.script-types-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 
 /*Магазин СД*/
 .market-message {
