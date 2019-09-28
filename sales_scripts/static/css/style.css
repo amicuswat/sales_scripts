@@ -9,7 +9,7 @@ body {
 
 .container-first-block {
     background-image: url(/static/img/Gearbox.png);
-    height: 900px;
+    height: 800px;
     width: auto;
 }
 
@@ -647,4 +647,54 @@ a {
 .pre-description {
     font-size: 16px;
     padding-left: 15px;
+}
+
+.container-second-clock {
+    height: 300px;
+    outline: 1px solid lightgray;
+    padding: 10px;
+}
+
+.message-h2 {
+    text-align: center;
+    font-size: 30px;
+    margin-top: 25px;
+    margin-bottom: 35px;
+}
+
+.explainings-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.explanation-why {
+    text-align: center;
+    border: 2px solid lightcoral;
+    margin: 0 20px;
+    max-width: 186px;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.data-label {
+    font-size: 21px;
+    margin-bottom: 10px;
+    text-align: left;
+    width: 150px;
+    border-right: 1px solid black;
+}
+
+.form-data {
+    font-size: 21px;
+    margin-bottom: 10px;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.dop-info {
+    margin: 20px;
+    font-size: 19px;
+    outline: 2px solid lightcoral;
+    padding: 2px 5px;
 }

@@ -16,11 +16,17 @@
             </div>
             <div class="market-mid">
                 <button class="orders-btn">
-                    <a class="orders-a" href="{% url 'market:buy_sd' price.to_pay price.volume %}">Оплатить {{ price.to_pay }} руб</a>
+                    <a class="orders-a" href="{% url 'market:buy_sd' price.price price.volume %}">
+                        Оплатить {{ price.to_pay }} руб
+                    </a>
                 </button>
             </div>
             <div class="market-right">
-                <button class="orders-btn"><a class="orders-a" href="">Заказать счет ></a></button>
+                <button class="orders-btn">
+                    <a class="orders-a" href="{% url 'market:request_invoice' price.price price.volume %}">
+                        Заказать счет >
+                    </a>
+                </button>
             </div>
         </div>
         {% endfor %}

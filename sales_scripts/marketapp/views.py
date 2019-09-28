@@ -1,13 +1,14 @@
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from django.urls import reverse
 from authapp.models import ScriptsUser
-from marketapp.models import Purchase, Transaction
+from marketapp.models import Purchase, Transaction, InvoiceRequest
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+
 @login_required(login_url='/auth/login/')
-def buy_sd(request, amount, quantity):
+def buy_sd(request, price, quantity):
 
     # user = get_object_or_404(ScriptsUser, pk=request.user.pk)
     # user.scripts_days += quantity
@@ -16,6 +17,31 @@ def buy_sd(request, amount, quantity):
     # purchase.save()
 
     return HttpResponseRedirect(reverse('admin:control_post'))
+
+
+@login_required(login_url='/auth/login/')
+def request_invoice(request, price, quantity):
+    title = 'Запрос на выставление счета'
+    user = request.user
+    to_pay = price * quantity
+
+    content = {
+        'title': title,
+        'price': price,
+        'quantity': quantity,
+        'to_pay': to_pay,
+        'user': user
+
+    }
+
+    if request.method == 'POST':
+        new_order = InvoiceRequest(user=user, price_per_sd=price,
+                                   quantity_sd=quantity, comment=request.POST['comment'],
+                                   to_pay=to_pay)
+        new_order.save()
+        return HttpResponseRedirect(reverse('admin:control_post'))
+
+    return render(request, 'marketapp/request_invoice.html', content)
 
 @login_required(login_url='/auth/login/')
 def sd_shop(request):

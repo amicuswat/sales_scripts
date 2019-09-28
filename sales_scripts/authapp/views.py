@@ -38,16 +38,16 @@ def register(request):
     if request.method == 'POST':
         register_form = ScriptsUserRegisterForm(request.POST)
 
-        if register_form.is_valid:
-            try:
-                new_user = register_form.save()
-            except ValueError:
-                content = {
-                    'title': title,
-                    'register_form': register_form
-                }
-
-                return render(request, 'authapp/register.html', content)
+        if register_form.is_valid():
+            # try:
+            new_user = register_form.save()
+            # except ValueError:
+            #     content = {
+            #         'title': title,
+            #         'register_form': register_form
+            #     }
+            #
+            #     return render(request, 'authapp/register.html', content)
 
             new_user.scripts_days += test_scripts_days
             new_user.save()
