@@ -33,17 +33,35 @@ def register(request):
     title = 'регистрация'
     test_scripts_days = 30
 
+
+
     if request.method == 'POST':
         register_form = ScriptsUserRegisterForm(request.POST)
 
         if register_form.is_valid:
-            new_user = register_form.save()
+            try:
+                new_user = register_form.save()
+            except ValueError:
+                content = {
+                    'title': title,
+                    'register_form': register_form
+                }
+
+                return render(request, 'authapp/register.html', content)
+
             new_user.scripts_days += test_scripts_days
             new_user.save()
             user_rights = UserRights(user=new_user)
             user_rights.save()
 
             return HttpResponseRedirect(reverse('auth:login'))
+        else:
+            content = {
+                'title': title,
+                'register_form': register_form
+            }
+
+            return render(request, 'authapp/register.html', content)
 
     else:
         register_form = ScriptsUserRegisterForm()

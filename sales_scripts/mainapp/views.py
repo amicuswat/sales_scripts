@@ -106,7 +106,7 @@ def script_preview(request, pk):
 
         }
 
-        return render(request, 'mainapp/script2D_preview.html', content)
+        return render(request, 'mainapp/script2d_preview.html', content)
 
     else:
 
