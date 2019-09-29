@@ -1,14 +1,6 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
 
-{% block menu %}
-    {% if user.is_authenticated %}
-        <div>
-            <button class="nav-button"><a class="orders-a" href="{% url 'admin:scripts_read' %}">Вернуться</a></button>
-        </div>
-    {% endif %}
-{% endblock %}
-
 {% block content %}
 
     <div class="top">

@@ -609,6 +609,7 @@ a {
     background-color: beige;
     font-style: italic;
     text-align: left;
+    max-width: 645px;
 }
 
 .menu-right {
@@ -697,4 +698,101 @@ a {
     font-size: 19px;
     outline: 2px solid lightcoral;
     padding: 2px 5px;
+}
+
+.footer {
+    background-color: darkslategray;
+    color: white;
+    padding: 5px;
+    font-style: italic;
+    letter-spacing: 1.1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.copyright-info {
+    padding: 0 0 0 450px;
+}
+
+.footer-span {
+    display: block;
+    margin: 5px;
+}
+
+pre {
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap !important;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    width: 99%;
+}
+
+.what-is-block {
+    background-color: lightgray;
+    padding-top: 10px;
+}
+
+.constructor-img:active {
+    transform: scale(4);
+
+}
+
+.constructor-img.left:active {
+    transform: scale(4);
+    position: relative;
+    left: 130%;
+}
+
+.constructor-img.right-img:active {
+    transform: scale(4);
+    position: relative;
+    left: -100%;
+}
+
+.constructor-img {
+    width: 200px;
+}
+
+.illustration {
+    display: flex;
+}
+
+.script-types {
+    display: flex;
+    padding: 5px;
+}
+
+.explanation {
+    text-align: center;
+    font-style: italic;
+    font-weight: 600;
+    padding: 10px 30px;
+}
+
+.script-type {
+    border: 2px solid lightcoral;
+    margin: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.image-label {
+    text-align: center;
+    padding: 15px 10px;
+}
+
+.illustration {
+    display: flex;
+    justify-content: center;
+}
+
+.illustrations {
+    border: 1px solid darkred;
+    margin-bottom: 5px;
+    padding-bottom: 10px;
 }

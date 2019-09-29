@@ -18,9 +18,13 @@
 <body style="background-color: white">
 <div class="container-main">
 
-    {% block menu %}
-
-    {% endblock %}
+   {% block menu %}
+    {% if user.is_authenticated %}
+        <div>
+            <button class="nav-button"><a class="orders-a" href="{% url 'admin:scripts_read' %}">Назад</a></button>
+        </div>
+    {% endif %}
+{% endblock %}
 
 
     {% block content %}
@@ -30,16 +34,17 @@
 {% block footer %}
     <div class="footer">
     <div class="contacts">
-        <span>Обращайтесь за консультацией:</span>
-<span>Тел: +7 (903) 374-50-30 (+whatsapp, viber)</span>
-        <span>email: vk@gtmk.ru</span>
-        <span>Адрес: г. Волгоград, ул. Баррикадная, д.10, оф. 304</span>
+        <span class="footer-span">Обращайтесь за консультацией:</span>
+<span class="footer-span">Тел: +7 (903) 374-50-30 (+whatsapp, viber)</span>
+        <span class="footer-span">email: vk@gtmk.ru</span>
+        <span class="footer-span">Адрес: г. Волгоград, ул. Баррикадная, д.10, оф. 304</span>
+        <span class="footer-span">Директор: Виктор Курышев</span>
     </div>
     <div class="copyright-info">
 © Все права защищены ООО ГТМК
     </div>
     <div class="social-media">
-vk fb
+
     </div>
     </div>
 {% endblock %}

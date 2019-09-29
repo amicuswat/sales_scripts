@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-    <form class="form-horizontal" action="{% url 'admin:situation_edit' situation.pk %}" method="post"
+    <form class="form-horizontal" action="{% url 'admin:situation_edit' situation.pk script_type %}" method="post"
           enctype="multipart/form-data">
         {% csrf_token %}
 
@@ -18,7 +18,7 @@
             <div class="form-submit">
                 <button class="nav-button last-button">
                     <a class="orders-a"
-                       href="{% url 'admin:script_edit' situation.control.control.script.pk %}">Назад</a>
+                       href="{% url 'admin:script_edit' script_pk %}">Назад</a>
                 </button>
             </div>
         </div>

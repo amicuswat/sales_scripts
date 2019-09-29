@@ -6,43 +6,46 @@
     <div class="container-first-block">
 
 
-            <div class="upper-menu">
-                <div class="logo">
-                    <img class="logo-img" src="{% static 'img/logo.png' %}">
-                </div>
-                <div class="nav-menu">
-                    <button class="nav-button">Что это?</button>
-                    <button class="nav-button">Преимущества</button>
-                    <button class="nav-button">Цена</button>
-                    <button class="nav-button">Контакты</button>
-                    <span></span>
-                </div>
+        <div class="upper-menu">
+            <div class="logo">
+                <img class="logo-img" src="{% static 'img/logo.png' %}">
+            </div>
+            <div class="nav-menu">
+                <button class="nav-button"><a href="#what-is" class="orders-a">Что это?</a> </button>
+                <button class="nav-button">Преимущества</button>
+                <button class="nav-button">Цена</button>
+                <button class="nav-button">Контакты</button>
+                <span></span>
+            </div>
 
-            </div>
-            <div class="hor-liner">
-                <hr class="menu-hr">
-            </div>
-            <div >
-                <h1 class="offer-h1">
-                    Простой сервис создания скриптов продаж
-                </h1>
-            </div>
-            <div >
-                <p class="offer-p">
-                    Создать скрипт продаж за 8-15 минут<br>
-                    снизить время на обучение продажников до 30 минут<br>
-                    увеличить конверсию на 50%<br>
-                </p>
-            </div>
+        </div>
+        <div class="hor-liner">
+            <hr class="menu-hr">
+        </div>
+        <div>
+            <h1 class="offer-h1">
+                Простой сервис создания скриптов продаж
+            </h1>
+        </div>
+        <div>
+            <p class="offer-p">
+                Создать скрипт продаж за 8-15 минут<br>
+                снизить время на обучение продажников до 30 минут<br>
+                увеличить конверсию на 50%<br>
+            </p>
+        </div>
         {% if user.is_authenticated %}
             <div class="central-menu">
-                <button class="main-nav-btn reg-btn"><a class="white-a" href="{% url 'admin:control_post' %}">> В личный кабинет </a> </button>
+                <button class="main-nav-btn reg-btn"><a class="white-a" href="{% url 'admin:control_post' %}">> В личный
+                    кабинет </a></button>
 
             </div>
-         {% else %}
+        {% else %}
             <div class="central-menu">
-            <button class="main-nav-btn reg-btn"><a class="white-a" href="{% url 'auth:register' %}">> Зерегистрируйтесь в сервисе</a> </button>
-            <button class="main-nav-btn"><a class="black-a" href="{% url 'auth:login' %}">> В личный кабинет</a> </button>
+                <button class="main-nav-btn reg-btn"><a class="white-a" href="{% url 'auth:register' %}">>
+                    Зерегистрируйтесь в сервисе</a></button>
+                <button class="main-nav-btn"><a class="black-a" href="{% url 'auth:login' %}">> В личный кабинет</a>
+                </button>
             </div>
 
 
@@ -53,26 +56,105 @@
 
     </div>
     <div class="container-second-clock">
-    <div class="message-h2">
-        Удобный и простой конструктор скриптов поможет вам!
+        <div class="message-h2">
+            Удобный и простой конструктор скриптов поможет вам!
+        </div>
+        <div class="explainings-container">
+            <div class="explanation-why">
+                Вы сократите время на адаптацию нового менеджера по продажам до 30 минут.
+            </div>
+            <div class="explanation-why">
+                Благодаря простому конструктору вы сможете написать продающий скрипт за 1-2 часа.
+            </div>
+            <div class="explanation-why">
+                Сотрудник сможет легко и быстро найти информацию и время ответа на вопрос сократится до милисекунд.
+            </div>
+            <div class="explanation-why">
+                Менеджер будет говорить то, что вы хотите, а не то что выдумает сам.
+            </div>
+        </div>
     </div>
-    <div class="explainings-container">
-        <div class="explanation-why">
-Вы сократите время на адаптацию нового менеджера по продажам до 30 минут.
+    <div class="what-is-block" id="what-is">
+        <div class="message-h2">
+            Сервис позволяет разрабатывать скрипты любой сложности под ваши цели!
         </div>
-        <div class="explanation-why">
-Благодаря простому конструктору вы сможете написать продающий скрипт за 1-2 часа.
-        </div>
-        <div class="explanation-why">
-Сотрудник сможет легко и быстро найти информацию и время ответа на вопрос сократится до милисекунд.
-        </div>
-        <div class="explanation-why">
-Менеджер будет говорить то, что вы хотите, а не то что выдумает сам.
+        <div class="script-types">
+            <div class="script-type">
+                <div class="explanation">
+                    Если у вас очень масштабный скрипт с множеством вариантов, то лучше можно использовать скрипт с 2мя
+                    уровнями контроля - Трехмерный
+                </div>
+                <div class="illustrations">
+                    <div class="image-label">
+                        Так выглядит Трехмерный скрипт в конструкторе
+                    </div>
+                    <div class="illustration">
+                        <img class="constructor-img left" title="Кликните, чтобы увеличить"
+                             src="{% static 'img/constr3dex.jpg' %}">
+                    </div>
+                </div>
+                <div class="illustrations">
+                    <div class="image-label">
+                        Так Трехмерный скрипт выглядит для ваших сотрудников
+                    </div>
+                    <div class="illustration">
+                        <img class="constructor-img left" title="Кликните, чтобы увеличить"
+                             src="{% static 'img/scriptex3d.jpg' %}">
+                    </div>
+                </div>
+            </div>
+            <div class="script-type">
+                <div class="explanation">
+                    Для скриптов попроще, если вариантов не так много, лучше использовать конструктор скриптов с 1
+                    уровнем контроля - Двумерный!
+                </div>
+                <div class="illustrations">
+                    <div class="image-label">
+                        Так выглядит Двумерный скрипт в конструкторе
+                    </div>
+                    <div class="illustration">
+                        <img class="constructor-img" title="Кликните, чтобы увеличить"
+                             src="{% static 'img/constr2dex.jpg' %}">
+                    </div>
+                </div>
+                <div class="illustrations">
+                    <div class="image-label">
+                        Так Двумерный скрипт выглядит для ваших сотрудников
+                    </div>
+                    <div class="illustration">
+                        <img class="constructor-img" title="Кликните, чтобы увеличить"
+                             src="{% static 'img/scriptex2d.jpg' %}">
+                    </div>
+                </div>
+            </div>
+            <div class="script-type">
+                <div class="explanation">
+                    Если ваш скрипт линейный и подразумевает четкую последовательность вопросов и ответов - Линейный скрипт - лучший выбор
+                </div>
+                <div class="illustrations">
+                    <div class="image-label">
+                        Так выглядит Линейный скрипт в конструкторе
+                    </div>
+                    <div class="illustration">
+                        <img class="constructor-img right-img" title="Кликните, чтобы увеличить"
+                             src="{% static 'img/constrlinex.jpg' %}">
+                    </div>
+                </div>
+                <div class="illustrations">
+                    <div class="image-label">
+                        Так Линейный скрипт выглядит для ваших сотрудников
+                    </div>
+                    <div class="illustration">
+                        <img class="constructor-img right-img" title="Кликните, чтобы увеличить"
+                             src="{% static 'img/scriptexlin.jpg' %}">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
 
-    </div>
+
 
 {% endblock %}
 

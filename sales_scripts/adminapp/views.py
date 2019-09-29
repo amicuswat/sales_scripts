@@ -512,7 +512,9 @@ def situation_edit(request, pk, script_type):
         'title': title,
         'situation': situation,
         'rights': rights,
-        'container_size': container_size
+        'container_size': container_size,
+        'script_pk': script_pk,
+        'script_type': script_type
     }
 
     return render(request, 'adminapp/situation_edit.html', content)
