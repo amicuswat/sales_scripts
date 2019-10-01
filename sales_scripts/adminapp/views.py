@@ -324,6 +324,19 @@ def script_deactivate(request, pk):
 
 
 @login_required(login_url='/auth/login/')
+def change_link(request, pk):
+    script_to_edit = get_object_or_404(Script, pk=pk)
+        
+    while True:
+        unique_url = randomword(16)
+        scripts = Script.objects.filter(url=unique_url)
+        if not scripts:
+            script_to_edit.url = unique_url
+            script_to_edit.save()
+            return HttpResponseRedirect(reverse('admin:scripts_read'))
+        
+
+@login_required(login_url='/auth/login/')
 def control_top_create(request, pk):
     title = 'добавить блок'
     container_size = 'small_container'
