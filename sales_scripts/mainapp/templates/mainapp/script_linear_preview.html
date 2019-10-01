@@ -37,12 +37,27 @@
             let block_names = [];
             let instructions = [];
 
+            let random_word = () => {
+                let alphabet = 'abcdefghijklmnopqrstuvwxyz';
+                word = '';
+                for (let i = 0; i < 6; i++) {
+                    word += alphabet[Math.round(Math.random() * (alphabet.length - 1))];
+                }
+                return word;
+            };
+
+
             // Functions
             let create_button = (button_text, button_class = 'button') => {
                 let some_button = document.createElement('a');
 
+                let id_word = random_word();
+                let id_ref = "#" + id_word;
+
                 some_button.className = button_class;
-                some_button.href = "#";
+                some_button.id = id_word;
+
+                some_button.href = id_ref;
                 some_button.textContent = button_text;
                 return some_button;
             };
@@ -84,35 +99,34 @@
             // forming second level controls blocks
 
 
+            // формируем блок c ситуациями
+            content_block = create_block('content-secretary');
+            content_container.appendChild(content_block);
+            block_names.push(content_block);
 
-                        // формируем блок c ситуациями
-                        content_block = create_block('content-secretary');
-                        content_container.appendChild(content_block);
-                        block_names.push(content_block);
-
-                        // добавляем событие по кнопке
-
-
-                        {% for situation in situations %}
-
-                                situation_element = create_button("{{ situation.situation }}", button_class = 'button situation');
-                                content_block.appendChild(situation_element);
-
-                                instruction_element = document.createElement('pre');
-
-                                instruction_element.className = 'instruction';
-
-                                instruction_element.href = "#";
-                                instruction_element.innerHTML = `{{ situation.recomended_action }}`;
-                                instruction_element.style.display = 'none';
-
-                                situation_element.appendChild(instruction_element);
-                                instructions.push(instruction_element);
-
-                                add_listener(situation_element, instruction_element, instructions);
+            // добавляем событие по кнопке
 
 
-                        {% endfor %}
+            {% for situation in situations %}
+
+                situation_element = create_button("{{ situation.situation }}", button_class = 'button situation');
+                content_block.appendChild(situation_element);
+
+                instruction_element = document.createElement('pre');
+
+                instruction_element.className = 'instruction';
+
+                instruction_element.href = "#";
+                instruction_element.innerHTML = `{{ situation.recomended_action }}`;
+                instruction_element.style.display = 'none';
+
+                situation_element.appendChild(instruction_element);
+                instructions.push(instruction_element);
+
+                add_listener(situation_element, instruction_element, instructions);
+
+
+            {% endfor %}
 
 
 
