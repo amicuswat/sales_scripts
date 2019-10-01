@@ -5,10 +5,12 @@ from authapp.models import ScriptsUser
 from adminapp.models import Script, ControlTop, ControlToControl, Situation, Situation2D, SituationLinear
 import adminapp.views as adminapp
 
+from django.utils.translation import ugettext as _
+
 # Create your views here.
 
 def main(request):
-    title = 'главная'
+    title = _('главная')
 
     content = {
         'title': title
@@ -17,7 +19,7 @@ def main(request):
     return render(request, 'mainapp/index.html', content)
 
 def script_view(request, script_url):
-    title = 'Ваш скрипт'
+    title = _('Ваш скрипт')
 
     script = get_object_or_404(Script, url=script_url)
     user = get_object_or_404(ScriptsUser, pk=script.user.pk)
@@ -66,7 +68,7 @@ def script_view(request, script_url):
 
 
 def script_preview(request, pk):
-    title = 'Ваш скрипт'
+    title = _('Ваш скрипт')
 
     script = get_object_or_404(Script, pk=pk)
 

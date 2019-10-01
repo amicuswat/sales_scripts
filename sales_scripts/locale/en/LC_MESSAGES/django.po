@@ -1,0 +1,69 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-01 18:22+0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\mainapp\templates\mainapp\index.html:15
+msgid "Что это?"
+msgstr "What's it?"
+
+#: .\mainapp\templates\mainapp\index.html:16
+msgid "Преимущества"
+msgstr "Advantages"
+
+#: .\mainapp\templates\mainapp\index.html:17
+msgid "Цена"
+msgstr "Price"
+
+#: .\mainapp\templates\mainapp\index.html:18
+msgid "Контакты"
+msgstr ""
+
+#: .\mainapp\templates\mainapp\index.html:43
+msgid "Простой сервис создания скриптов продаж"
+msgstr ""
+
+#: .\mainapp\templates\mainapp\index.html:48
+msgid "Создать скрипт продаж за 8-15 минут"
+msgstr ""
+
+#: .\mainapp\templates\mainapp\index.html:49
+msgid "снизить время на обучение продажников до 30 минут"
+msgstr ""
+
+#: .\mainapp\templates\mainapp\index.html:50
+#, python-format
+msgid "увеличить конверсию на 50%%"
+msgstr ""
+
+#: .\mainapp\templates\mainapp\index.html:56
+#: .\mainapp\templates\mainapp\index.html:65
+msgid "В личный кабинет"
+msgstr ""
+
+#: .\mainapp\templates\mainapp\index.html:63
+msgid "Зерегистрируйтесь в сервисе"
+msgstr ""
+
+#: .\mainapp\views.py:13
+msgid "главная"
+msgstr ""
+
+#: .\mainapp\views.py:22 .\mainapp\views.py:71
+msgid "Ваш скрипт"
+msgstr ""

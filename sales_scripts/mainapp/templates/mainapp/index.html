@@ -1,4 +1,5 @@
 {% extends 'mainapp/base.html' %}
+{% load i18n %}
 {% load static %}
 
 {% block menu %}
@@ -11,10 +12,25 @@
                 <img class="logo-img" src="{% static 'img/logo.png' %}">
             </div>
             <div class="nav-menu">
-                <button class="nav-button"><a href="#what-is" class="orders-a">Что это?</a> </button>
-                <button class="nav-button">Преимущества</button>
-                <button class="nav-button">Цена</button>
-                <button class="nav-button">Контакты</button>
+                <button class="nav-button"><a href="#what-is" class="orders-a">{% trans "Что это?" %}</a></button>
+                <button class="nav-button">{% trans "Преимущества" %}</button>
+                <button class="nav-button">{% trans "Цена" %}</button>
+                <button class="nav-button">{% trans "Контакты" %}</button>
+                <form action="{% url 'main:set_language' %}" method="post">{% csrf_token %}
+                    <input name="next" type="hidden" value="{{ redirect_to }}">
+                    <select name="language">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        {% for language in languages %}
+                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
+                                    selected{% endif %}>
+                                {{ language.name_local }} ({{ language.code }})
+                            </option>
+                        {% endfor %}
+                    </select>
+                    <input type="submit" value="Go">
+                </form>
                 <span></span>
             </div>
 
@@ -24,27 +40,29 @@
         </div>
         <div>
             <h1 class="offer-h1">
-                Простой сервис создания скриптов продаж
+                {% trans "Простой сервис создания скриптов продаж" %}
             </h1>
         </div>
         <div>
             <p class="offer-p">
-                Создать скрипт продаж за 8-15 минут<br>
-                снизить время на обучение продажников до 30 минут<br>
-                увеличить конверсию на 50%<br>
+                {% trans "Создать скрипт продаж за 8-15 минут" %} <br>
+                {% trans "снизить время на обучение продажников до 30 минут" %} <br>
+                {% trans "увеличить конверсию на 50%" %} <br>
             </p>
         </div>
         {% if user.is_authenticated %}
             <div class="central-menu">
-                <button class="main-nav-btn reg-btn"><a class="white-a" href="{% url 'admin:control_post' %}">> В личный
-                    кабинет </a></button>
+                <button class="main-nav-btn reg-btn">
+                    <a class="white-a" href="{% url 'admin:control_post' %}">> {% trans "В личный кабинет" %} </a>
+                </button>
 
             </div>
         {% else %}
             <div class="central-menu">
                 <button class="main-nav-btn reg-btn"><a class="white-a" href="{% url 'auth:register' %}">>
-                    Зерегистрируйтесь в сервисе</a></button>
-                <button class="main-nav-btn"><a class="black-a" href="{% url 'auth:login' %}">> В личный кабинет</a>
+                    {% trans "Зерегистрируйтесь в сервисе" %}</a></button>
+                <button class="main-nav-btn"><a class="black-a"
+                                                href="{% url 'auth:login' %}">> {% trans "В личный кабинет" %}</a>
                 </button>
             </div>
 
@@ -129,7 +147,8 @@
             </div>
             <div class="script-type">
                 <div class="explanation">
-                    Если ваш скрипт линейный и подразумевает четкую последовательность вопросов и ответов - Линейный скрипт - лучший выбор
+                    Если ваш скрипт линейный и подразумевает четкую последовательность вопросов и ответов - Линейный
+                    скрипт - лучший выбор
                 </div>
                 <div class="illustrations">
                     <div class="image-label">
