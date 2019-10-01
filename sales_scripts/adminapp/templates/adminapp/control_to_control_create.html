@@ -4,10 +4,19 @@
 {% block content %}
     <form class="form-horizontal" action="{% url 'admin:control_to_control_create' control_top.pk %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <b>Название суб-блока</b>
-        <input type="text" name="control_name" value="">
-        <br>
+        <div class="form-block">
+            <div class="form-label">Название суб-блока</div>
+            <input class="small-form-input" type="text" name="control_name" required value="">
+        </div>
 
-        <input class="form-control" type="submit" value="сохранить">
+        <div class="form-submit">
+            <input class="nav-button orders-a" type="submit" value="Cохранить">
+        </div>
+
+        <div class="form-submit">
+            <button class="nav-button last-button"><a class="orders-a" href="{% url 'admin:script_edit' control_top.script.pk %}">Назад</a>
+            </button>
+        </div>
+
     </form>
 {% endblock %}

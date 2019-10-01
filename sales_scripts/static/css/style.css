@@ -3,6 +3,282 @@
     margin: 0;
 }
 
+body {
+    background-color: lightgray;
+}
+
+.container-first-block {
+    background-image: url(/static/img/Gearbox.png);
+    height: 800px;
+    width: auto;
+}
+
+.upper-menu {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 10px 40px;
+    width: auto;
+}
+
+.logo-img {
+    height: 40px;
+    padding-left: 100px;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: flex-end;
+    padding-right: 100px;
+}
+
+
+.hor-liner {
+    height: 80px;
+}
+
+.menu-hr {
+    border: 1px solid white;
+    margin: 5px 150px;
+}
+
+.offer-h1 {
+    color: white;
+    text-align: center;
+    padding-bottom: 50px;
+    font-size: 2.2em;
+}
+
+.offer-p {
+    color: white;
+    text-align: center;
+    font-size: 1.4em;
+}
+
+.central-menu {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding-top: 80px;
+}
+
+.main-nav-btn {
+    width: 350px;
+    padding: 9px 20px 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+
+
+}
+
+.reg-btn {
+    background-color: darkred;
+}
+
+.white-a {
+    color: white;
+    font-size: 18px;
+}
+
+.black-a {
+    color: black;
+    font-size: 18px;
+}
+
+.container-login {
+    background-image: url(/static/img/cargo-corridor.png);
+    height: 900px;
+    background-position: center;
+    padding-top: 35px;
+}
+
+.login {
+    width: 450px;
+    height: 500px;
+    background-color: white;
+    opacity: 0.85;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.into-span {
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    color: darkred;
+    font-weight: 600;
+    padding-top: 8px;
+}
+
+.form-horizontal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 400px;
+}
+
+.form-horizontal input {
+    background-color: navajowhite;
+}
+
+.form-horizontal p {
+    display: flex;
+    outline: 1px solid black;
+    padding: 2px;
+}
+
+.form-horizontal p label {
+    margin-left: 35px;
+    width: 190px;
+    display: block;
+    color: darkred;
+}
+
+.enter-form {
+    padding-top: 50px;
+    height: 200px;
+}
+
+.admin_bgi_container {
+    background-image: url(/static/img/ship_bridge.png);
+    height: 900px;
+    background-position: center;
+    padding-top: 35px;
+}
+
+.market_bgi_container {
+    background-image: url(/static/img/market.png);
+    height: 900px;
+    background-position: center;
+    padding-top: 35px;
+}
+
+.menu-container {
+    padding-right: 150px;
+    padding-left: auto;
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 15px;
+}
+
+.admin_container {
+    width: 1300px;
+    margin: 8px auto;
+    padding: 5px;
+    outline: black solid 1px;
+    background-color: white;
+    opacity: 0.9;
+}
+
+.large_container {
+    width: 1300px;
+}
+
+.medium_container {
+    width: 800px;
+}
+
+.small_container {
+    width: 500px;
+    margin: 0px auto;
+}
+
+.h2.text-center.head {
+    text-align: center;
+    font-size: 1.3em;
+    text-decoration: underline;
+    text-transform: uppercase;
+    padding: 10px;
+}
+
+.into-h2 {
+    margin-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+    font-weight: 600;
+    font-style: italic;
+    letter-spacing: 0.5px;
+}
+
+.control-post-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 28px;
+    margin-bottom: 10px;
+}
+
+.control-data-container {
+    width: 500px;
+    border: 2px dotted darkred;
+    padding: 5px 5px 20px;
+    border-radius: 15px;
+}
+
+.report-span {
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 35px 95px;
+    display: block;
+    text-decoration: underline;
+}
+
+.report-row {
+    display: flex;
+    padding: 5px;
+    border-bottom: 1px solid black;
+    margin: 0 20px;
+}
+
+.report-left {
+    margin-left: 10px;
+    width: 200px;
+    font-size: 1.1em;
+}
+
+.report-right {
+    border-left: 1px solid black;
+    padding-left: 20px;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.orders-btn {
+    background-color: darkred;
+    padding: 2px 15px;
+    border-radius: 0 15px 15px 0;
+}
+
+.orders-a {
+    color: white;
+}
+
+.reminder {
+    width: 450px;
+    outline: 1px solid black;
+    padding: 5px;
+}
+
+.explanation-span {
+    font-size: 1.3em;
+    margin: 5px;
+    display: block;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.explanation-p {
+    padding: 3px;
+}
+
+input.form-control.submit {
+    background-color: red;
+    padding: 32px 10px;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 button {
     max-height: 40px;
 
@@ -15,6 +291,11 @@ li {
     margin: 10px 20px;
 }
 
+
+.nav-menu {
+    align-content: flex-end;
+}
+
 .change-button {
     max-width: 80px;
 }
@@ -23,12 +304,6 @@ a {
     text-decoration: none;
 }
 
-.admin_container {
-    width: 1300px;
-    margin: 8px auto;
-    padding: 5px;
-    outline: black solid 1px;
-}
 
 .form-horizontal {
     margin: 10px;
@@ -46,13 +321,6 @@ a {
 
 }
 
-.control-width-350 {
-    width: 350px;
-    border: solid #5897fb 1px;
-    padding: 5px;
-    margin: 5px;
-}
-
 .control-width-660 {
     width: 660px;
     border: solid blue 1px;
@@ -64,8 +332,202 @@ a {
     display: flex;
 }
 
+.allarm-h2 {
+    text-align: center;
+    color: red;
+}
+
+/*Формы*/
+.form-block {
+    margin: 5px 40px;
+}
+
+.form-label {
+    font-size: 21px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.form-textarea {
+    width: 400px;
+    height: 200px;
+    background-color: navajowhite;
+}
+.small-form-input {
+    display: block;
+    width: 400px;
+}
+
+/*Редактирование скрипта*/
+.all-controls-container {
+    display: flex;
+    outline: 1px solid lightgray;
+    margin: 5px;
+    padding: 5px;
+}
+
+.main_controls {
+    width: 300px;
+    display: flex;
+    outline: 1px solid lightgray;
+    padding: 5px 5px 5px 5px;
+    justify-content: space-between;
+}
+
+/*Мастерская скриптов*/
+.script-start-container {
+    outline: 1px solid lightgray;
+    margin: 10px 5px 10px;
+    padding: 5px 5px 15px;
+    width: 160px;
+    display: flex;
+    flex-direction: column;
+}
+
+.new_script-btn {
+    padding: 45px 10px;
+    border-radius: 50%;
+    background-color: darkred;
+    line-height: 1px;
+    margin: 0 auto;
+}
+
+.situations-linear {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.new-script-lbl {
+    font-size: 20px;
+    margin: auto 0;
+    font-weight: 600;
+    text-align: center;
+    padding: 10px;
+}
+
+.crud-button {
+       margin: 0 0px;
+    padding: 2px 4px;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+    max-height: 25px;
+    background-color: firebrick;
+}
+
+.crud-a {
+    color: white;
+    font-size: 10px;
+}
+
+.control-name {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.sub-control {
+    width: 350px;
+    display: flex;
+    outline: 1px solid lightgray;
+    margin: 0 0px 5px 5px;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.situations-container {
+    margin-left: 5px;
+}
+
+.two-d {
+    display: flex;
+    justify-content: center;
+}
+
+.controls-and-situations {
+    display: flex;
+}
+
+.situation-container {
+    outline: 1px solid lightgray;
+    padding: 5px;
+    width: 590px;
+    margin-bottom: 5px;
+}
+
+.scripts-container {
+    padding: 5px;
+    margin: 5px;
+    outline: 1px solid lightgrey;
+}
+
+.script_name {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 24px;
+    text-decoration: underline;
+    padding-left: 40px;
+}
+
+.info-message {
+    font-weight: 600;
+    font-style: italic;
+    font-size: 13px;
+    padding: 3px;
+}
+
+.script-url {
+    color: blue;
+    padding: 3px;
+    margin-top: 3px;
+}
+
+.script-url-container {
+    display: flex;
+    outline: 1px solid lightgrey;
+    padding: 5px 0;
+}
+
+.script-controls {
+    outline: 1px solid black;
+    margin: 3px 0;
+    display: flex;
+    justify-content: start;
+}
+
+.script-types-container {
+    display: flex;
+    justify-content: space-evenly;
+}
 
 
+/*Магазин СД*/
+.market-message {
+    margin: 5px 66px;
+    text-align: center;
+    font-size: 23px;
+    font-style: italic;
+}
+
+.market-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 45px;
+    padding: 5px;
+    outline: 1px solid black;
+}
+
+.market-left {
+    margin: 0 10px;
+    width: 325px;
+    font-size: 16px;
+}
+
+.market-span {
+    font-weight: 600;
+}
+
+/*Стили отображения скрипта*/
 .button {
     margin: 10px 15px;
     padding: 5px 10px;
@@ -111,8 +573,14 @@ a {
 
     outline: 1px solid black;
     margin: 0 4px;
-    width: 680px;
+    width: 725px;
     box-sizing: border-box;
+}
+
+.container-main {
+    outline: 1px solid lightgray;
+    padding: 5px;
+    margin: 5px;
 }
 
 .content-lpr {
@@ -141,6 +609,7 @@ a {
     background-color: beige;
     font-style: italic;
     text-align: left;
+    max-width: 645px;
 }
 
 .menu-right {
@@ -152,4 +621,178 @@ a {
     width: auto;
     padding: 5px 10px;
     font-size: 20px;
+}
+
+
+
+.form-submit {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+.last-button {
+    margin-bottom: 40% !important;
+}
+
+.nav-button {
+    margin: 3px 10px;
+    padding: 3px 10px;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+    max-height: 25px;
+    background-color: darkred !important;
+}
+
+.pre-description {
+    font-size: 16px;
+    padding-left: 15px;
+}
+
+.container-second-clock {
+    height: 300px;
+    outline: 1px solid lightgray;
+    padding: 10px;
+}
+
+.message-h2 {
+    text-align: center;
+    font-size: 30px;
+    margin-top: 25px;
+    margin-bottom: 35px;
+}
+
+.explainings-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.explanation-why {
+    text-align: center;
+    border: 2px solid lightcoral;
+    margin: 0 20px;
+    max-width: 186px;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.data-label {
+    font-size: 21px;
+    margin-bottom: 10px;
+    text-align: left;
+    width: 150px;
+    border-right: 1px solid black;
+}
+
+.form-data {
+    font-size: 21px;
+    margin-bottom: 10px;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.dop-info {
+    margin: 20px;
+    font-size: 19px;
+    outline: 2px solid lightcoral;
+    padding: 2px 5px;
+}
+
+.footer {
+    background-color: darkslategray;
+    color: white;
+    padding: 5px;
+    font-style: italic;
+    letter-spacing: 1.1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.copyright-info {
+    padding: 0 0 0 450px;
+}
+
+.footer-span {
+    display: block;
+    margin: 5px;
+}
+
+pre {
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap !important;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    width: 99%;
+}
+
+.what-is-block {
+    background-color: lightgray;
+    padding-top: 10px;
+}
+
+.constructor-img:active {
+    transform: scale(4);
+
+}
+
+.constructor-img.left:active {
+    transform: scale(4);
+    position: relative;
+    left: 130%;
+}
+
+.constructor-img.right-img:active {
+    transform: scale(4);
+    position: relative;
+    left: -100%;
+}
+
+.constructor-img {
+    width: 200px;
+}
+
+.illustration {
+    display: flex;
+}
+
+.script-types {
+    display: flex;
+    padding: 5px;
+}
+
+.explanation {
+    text-align: center;
+    font-style: italic;
+    font-weight: 600;
+    padding: 10px 30px;
+}
+
+.script-type {
+    border: 2px solid lightcoral;
+    margin: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.image-label {
+    text-align: center;
+    padding: 15px 10px;
+}
+
+.illustration {
+    display: flex;
+    justify-content: center;
+}
+
+.illustrations {
+    border: 1px solid darkred;
+    margin-bottom: 5px;
+    padding-bottom: 10px;
 }

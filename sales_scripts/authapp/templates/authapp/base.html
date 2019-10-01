@@ -2,30 +2,37 @@
 {% load static %}
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>
+    <meta charset="utf-8">
+    <title>
         {% block title %}
             {{ title|title }}
         {% endblock %}
     </title>
     {% block css %}
-
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     {% endblock %}
     {% block js %}
 
     {% endblock %}
 </head>
 <body>
-	<div class="container">
-        <div class="login">
-            <div class="h2 text-center head">
-                Аутентификация
-            </div>
+<div class="container-login">
+{% block menu %}
+    <div class="menu-container">
 
-            {% block content %}
-
-            {% endblock %}
+            <button class="nav-button"><a class="orders-a" href="{% url 'main:main_page' %}">Назад</a></button>
         </div>
-	</div>
+{% endblock %}
+    <div class="login">
+        <div class="h2 text-center head">
+            <span class="into-span">Добро пожаловать на борт, Кэп!</span>
+            <span class="into-span">Ведите свои данные!</span>
+        </div>
+
+        {% block content %}
+
+        {% endblock %}
+    </div>
+</div>
 </body>
 </html>

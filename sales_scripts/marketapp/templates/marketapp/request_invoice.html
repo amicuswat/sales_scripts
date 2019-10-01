@@ -1,0 +1,79 @@
+{% extends 'marketapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+
+        <div class="order-data">
+            <div class="dop-info">
+                Заказ на выставление счета на оплату
+            </div>
+            <div class="report-row">
+                <div class="data-label">Количество СД:</div>
+                <div class="form-data">{{ quantity }}</div>
+            </div>
+            <div class="report-row">
+                <div class="data-label">По цене:</div>
+                <div class="form-data">{{ price }} руб</div>
+            </div>
+            <div class="report-row">
+                <div class="data-label">К оплате:</div>
+                <div class="form-data">{{ to_pay }} руб</div>
+            </div>
+
+            <div class="dop-info">
+                Проверьте ваши данные для которых будет подготовлен счет, если что-то не так, укажите комментарии в
+                форме ниже:
+            </div>
+            <div class="report-row">
+                <div class="data-label">Имя:</div>
+                <div class="form-data">{{ user.first_name }}</div>
+            </div>
+            <div class="report-row">
+                <div class="data-label">Телефон:</div>
+                <div class="form-data">{{ user.phone }}</div>
+            </div>
+            <div class="report-row">
+                <div class="data-label">Компания:</div>
+                <div class="form-data">{{ user.company }}</div>
+            </div>
+            <div class="report-row">
+                <div class="data-label">e-mail:</div>
+                <div class="form-data">{{ user.email }}</div>
+            </div>
+
+
+        </div>
+        <div class="additiona-info">
+            <div class="dop-info">
+                Ваши комментарии и дополнения
+            </div>
+            <form class="form-horizontal" action="{% url 'marketapp:request_invoice' price quantity %}"
+                  method="post"
+                  enctype="multipart/form-data" title="Пожалуйста, проверьте название компании, имейл и телефон, чтобы мы смогли с вами связаться">
+                {% csrf_token %}
+                <div class="form-block">
+
+                    <div class="report-row">
+                        <div class="form-label">Добавьте дополнительную информацию, которую хотите нам сообщить.</div>
+                    </div>
+                    <br>
+                    <textarea class="form-textarea" rows="10" cols="45" name="comment" value=""></textarea>
+
+                    <div class="report-row">
+                        <div class="form-submit">
+                            <input class="nav-button orders-a" type="submit" value="Отправить запрос">
+                        </div>
+                        <div class="form-submit">
+                            <button class="nav-button last-button">
+                                <a class="orders-a"
+                                   href="{% url 'marketapp:sd_shop' %}">Назад</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+{% endblock %}

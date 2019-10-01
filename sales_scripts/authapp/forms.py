@@ -19,8 +19,13 @@ class ScriptsUserLoginForm(AuthenticationForm):
 class ScriptsUserRegisterForm(UserCreationForm):
     class Meta:
         model = ScriptsUser
-        fields = ('username', 'first_name', 'password1', 'password2',
-                  'email', )
+        fields = ('username', 'password1', 'password2',
+                  'phone',
+                  'first_name',
+                  'last_name', 'company_name',
+                  'position',
+                  'email',
+                  )
 
     def __init__(self, *args, **kwargs):
         super(ScriptsUserRegisterForm, self).__init__(*args, **kwargs)
@@ -31,8 +36,13 @@ class ScriptsUserRegisterForm(UserCreationForm):
 class ScriptsUserEditForm(UserChangeForm):
     class Meta:
         model = ScriptsUser
-        fields = ('username', 'first_name', 'password',
-                  'email', )
+        fields = ('username', 'password',
+                  'phone',
+                  'first_name',
+                  'last_name', 'company_name',
+                  'position',
+                  'email',
+                  )
 
     def __init__(self, *args, **kwargs):
         super(ScriptsUserEditForm, self).__init__(*args, **kwargs)

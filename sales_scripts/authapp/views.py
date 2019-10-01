@@ -3,6 +3,8 @@ from .forms import ScriptsUserLoginForm, ScriptsUserRegisterForm, ScriptsUserEdi
 from django.contrib import auth
 from django.urls import reverse
 
+from authapp.models import UserRights
+
 # Create your views here.
 
 def login(request):
@@ -18,7 +20,7 @@ def login(request):
         if user and user.is_active:
             auth.login(request, user)
 
-            return HttpResponseRedirect(reverse('main:main_page'))
+            return HttpResponseRedirect(reverse('admin:control_post'))
 
     content = {
         'title': title,
@@ -29,14 +31,37 @@ def login(request):
 
 def register(request):
     title = 'регистрация'
+    test_scripts_days = 30
+
+
 
     if request.method == 'POST':
         register_form = ScriptsUserRegisterForm(request.POST)
 
-        if register_form.is_valid:
-            register_form.save()
+        if register_form.is_valid():
+            # try:
+            new_user = register_form.save()
+            # except ValueError:
+            #     content = {
+            #         'title': title,
+            #         'register_form': register_form
+            #     }
+            #
+            #     return render(request, 'authapp/register.html', content)
+
+            new_user.scripts_days += test_scripts_days
+            new_user.save()
+            user_rights = UserRights(user=new_user)
+            user_rights.save()
 
             return HttpResponseRedirect(reverse('auth:login'))
+        else:
+            content = {
+                'title': title,
+                'register_form': register_form
+            }
+
+            return render(request, 'authapp/register.html', content)
 
     else:
         register_form = ScriptsUserRegisterForm()

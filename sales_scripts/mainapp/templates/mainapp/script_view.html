@@ -1,16 +1,14 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
 
+
+
 {% block content %}
 
     <div class="top">
-        <ol>
-            <li>КЛИЕНТ ВСЕГДА ПРАВ</li>
-            <li>ТОЛЬКО УВАЖИТЕЛЬНЫЙ, ВЕЖЛЕВЫЙ и УСЛУЖЛЕВЫЙ ТОН</li>
-            <li>НЕ ВСТУПАТЬ В СПОР С КЛИЕНТОМ (даже если он неправ)</li>
-            <li>ВСЕ СПОРНЫЕ ВОПРОСЫ РЕШАЮТСЯ МИРНО (см. пункт №2)</li>
-        </ol>
-        <p>(если вы не можете решить спорный вопрос, передаете всю информацию сотруднику выше по должности)</p>
+        <pre class="pre-description">
+            {{ script.description }}
+        </pre>
     </div>
 
 
@@ -41,12 +39,27 @@
         let block_names = [];
         let instructions = [];
 
+        let random_word = () => {
+            let alphabet = 'abcdefghijklmnopqrstuvwxyz';
+            word = '';
+            for (let i = 0; i < 6; i++) {
+                word += alphabet[Math.round(Math.random() * (alphabet.length - 1))];
+            }
+            return word;
+        };
+
+
         // Functions
         let create_button = (button_text, button_class = 'button') => {
             let some_button = document.createElement('a');
 
+            let id_word = random_word();
+            let id_ref = "#" + id_word;
+
             some_button.className = button_class;
-            some_button.href = "#";
+            some_button.id = id_word;
+
+            some_button.href = id_ref;
             some_button.textContent = button_text;
             return some_button;
         };
@@ -73,14 +86,15 @@
 
         };
 
+
         //        let control_block = (button_text, button_class, )
 
         let menu_button;
         let second_level_controls_block;
         let right_menu_button;
         let content_block;
-         let situation_element;
-         let instruction_element;
+        let situation_element;
+        let instruction_element;
 
         // Checking first level controls
         {% for control_top in controls_top %}
@@ -117,9 +131,10 @@
                             situation_element = create_button("{{ situation.situation }}", button_class = 'button situation');
                             content_block.appendChild(situation_element);
 
-                            instruction_element = document.createElement('div');
+                            instruction_element = document.createElement('pre');
 
                             instruction_element.className = 'instruction';
+
 
                             instruction_element.href = "#";
                             instruction_element.innerHTML = `{{ situation.recomended_action }}`;
@@ -142,6 +157,16 @@
 
         document.querySelector('.content-secretary').style.display = 'block';
         block_names[0].style.display = 'block';
+
+        let reloading_time = 3600000;
+        let interval_checking = 60000;
+
+        setInterval(function () {
+            let end_timer = Date.now() + reloading_time;
+            if (end_timer < Date.now()) {
+                window.location.reload(true);
+            }
+        }, interval_checking)
 
     </script>
 {% endblock %}

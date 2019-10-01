@@ -1,0 +1,36 @@
+{% extends 'marketapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div>
+        <div class="market-message">
+            - Извините, Кэп. Карты пока не принимаем. Система барахлит. Помехи от черной дыры. Но можем выставить счет
+        </div>
+
+        {% for price in prices %}
+            <div class="market-row" title="{{ price.message }}">
+            <div class="market-left">
+                Купить <span class="market-span">{{ price.volume }}</span> СД
+                по <span class="market-span">{{ price.price }}</span> руб.
+                Экономия <span class="market-span">{{ price.economy }}</span> руб.
+            </div>
+            <div class="market-mid">
+                <button class="orders-btn">
+                    <a class="orders-a" href="{% url 'market:buy_sd' price.price price.volume %}">
+                        Оплатить {{ price.to_pay }} руб
+                    </a>
+                </button>
+            </div>
+            <div class="market-right">
+                <button class="orders-btn">
+                    <a class="orders-a" href="{% url 'market:request_invoice' price.price price.volume %}">
+                        Заказать счет >
+                    </a>
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

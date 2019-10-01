@@ -2,12 +2,25 @@
 {% load static %}
 
 {% block content %}
-    <form class="form-horizontal" action="{% url 'admin:control_top_create' script.pk %}" method="post" enctype="multipart/form-data">
+    <form class="form-horizontal" action="{% url 'admin:control_top_create' script.pk %}" method="post"
+          enctype="multipart/form-data">
         {% csrf_token %}
-        <b>Название блока</b>
-        <input type="text" name="control_name" value="">
-        <br>
 
-        <input class="form-control" type="submit" value="сохранить">
+        <div class="form-block">
+            <div class="form-label">Название блока</div>
+            <input class="small-form-input" type="text" name="control_name" required value="">
+        </div>
+
+        <div class="form-submit">
+            <input class="nav-button orders-a" type="submit" value="Cохранить">
+        </div>
+        <div class="form-submit">
+            <button class="nav-button last-button"><a class="orders-a" href="{% url 'admin:script_edit' script.pk %}">Назад</a>
+            </button>
+        </div>
     </form>
+
+
+
+
 {% endblock %}
